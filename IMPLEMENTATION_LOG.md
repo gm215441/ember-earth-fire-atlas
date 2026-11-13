@@ -110,3 +110,34 @@ Phase 01 work. The interface must not be read as a current fire map.
 Phase 01 will inspect the mirror's own instructions and Parquet schemas, record
 checksums/retrieval timestamps, and produce the first reproducible real-data
 proof without conflating sensors or treating missing coverage as zero.
+
+## 2026-11-13 — Phase 01: real-data proof
+
+### What changed
+
+- Added a pinned DuckDB 2.0.0 Python environment and reproducible source
+  inspection, preview-build, and validation scripts under `pipeline/`.
+- Read the mirror's current `AGENTS.md` directly and recorded the measured remote
+  schemas, object metadata, exact queries, runtimes, and caveats in
+  `docs/DATA_PROOF.md`.
+- Generated `apps/web/public/data/global-preview.json` from exact daily columns
+  in the 2020 and 2025 yearly aggregate files. It contains no random points.
+
+### Evidence and results
+
+- Both exact GeoParquet objects returned HTTP 200. The all-time file was
+  3,364,679 bytes; the 2025 r5 file was 2,042,246 bytes.
+- All-time `sum(count)` and all monthly buckets both equal 614,362,367.
+- 2025 `sum(count)` and all 365 daily buckets both equal 58,352,900.
+- January 2020 totals 4,102,854 raw detected pixels; August 2025 totals
+  8,403,769. The preview validator confirmed distinct, nonempty cell values.
+- Full machine evidence: `artifacts/data/phase01-source-inspection.json`.
+- `pipeline/validate_preview.py`: PASS.
+- `npm run check`: PASS (lint, typecheck, 4 unit tests, production build).
+
+### Scientific limits
+
+These are raw mixed-fleet detected-pixel counts from an independent mirror of
+NASA FIRMS. They are not unique fires, burned area, coverage evidence, or a
+harmonized trend. Month-by-sensor conclusions cannot be drawn from these
+aggregate cells because the required cross-tab is absent.

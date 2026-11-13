@@ -1,0 +1,3601 @@
+{
+  "generated_at_utc": "2026-11-13T16:29:11.015127+00:00",
+  "producer": "NASA LANCE FIRMS",
+  "mirror": "Portolan Mirrors on Source Cooperative (independent; not NASA)",
+  "queries_use_exact_filenames": true,
+  "tables": [
+    {
+      "name": "alltime-r5",
+      "http": {
+        "url": "https://data.source.coop/portolan-mirrors/firms-catalog/detections/alltime-r5.parquet",
+        "status": 200,
+        "content_length_bytes": 3364679,
+        "etag": "\"411c75b801bdb86232ff7d1c0ff3e619\"",
+        "last_modified": "Wed, 16 Sep 2026 07:09:15 GMT",
+        "checked_at_utc": "2026-11-13T16:29:50.408863+00:00"
+      },
+      "schema": [
+        {
+          "name": "a5_cell",
+          "type": "UBIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200011",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200012",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200101",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200102",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200103",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200104",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200105",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200106",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200107",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200108",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200109",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200110",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200111",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200112",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200201",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200202",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200203",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200204",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200205",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200206",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200207",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200208",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200209",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200210",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200211",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200212",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200301",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200302",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200303",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200304",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200305",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200306",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200307",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200308",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200309",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200310",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200311",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200312",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200401",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200402",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200403",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200404",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200405",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200406",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200407",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200408",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200409",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200410",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200411",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200412",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200501",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200502",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200503",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200504",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200505",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200506",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200507",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200508",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200509",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200510",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200511",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200512",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200601",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200602",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200603",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200604",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200605",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200606",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200607",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200608",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200609",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200610",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200611",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200612",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200701",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200702",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200703",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200704",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200705",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200706",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200707",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200708",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200709",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200710",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200711",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200712",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200801",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200802",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200803",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200804",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200805",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200806",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200807",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200808",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200809",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200810",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200811",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200812",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200901",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200902",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200903",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200904",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200905",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200906",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200907",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200908",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200909",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200910",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200911",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_200912",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201001",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201002",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201003",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201004",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201005",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201006",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201007",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201008",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201009",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201010",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201011",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201012",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201101",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201102",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201103",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201104",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201105",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201106",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201107",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201108",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201109",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201110",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201111",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201112",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201201",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201202",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201203",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201204",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201205",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201206",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201207",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201208",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201209",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201210",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201211",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201212",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201301",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201302",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201303",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201304",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201305",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201306",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201307",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201308",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201309",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201310",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201311",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201312",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201401",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201402",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201403",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201404",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201405",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201406",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201407",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201408",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201409",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201410",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201411",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201412",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201501",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201502",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201503",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201504",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201505",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201506",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201507",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201508",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201509",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201510",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201511",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201512",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201601",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201602",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201603",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201604",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201605",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201606",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201607",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201608",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201609",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201610",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201611",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201612",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201701",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201702",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201703",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201704",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201705",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201706",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201707",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201708",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201709",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201710",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201711",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201712",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201801",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201802",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201803",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201804",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201805",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201806",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201807",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201808",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201809",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201810",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201811",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201812",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201901",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201902",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201903",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201904",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201905",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201906",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201907",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201908",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201909",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201910",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201911",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_201912",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202001",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202002",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202003",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202004",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202005",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202006",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202007",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202008",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202009",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202010",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202011",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202012",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202101",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202102",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202103",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202104",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202105",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202106",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202107",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202108",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202109",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202110",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202111",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202112",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202201",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202202",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202203",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202204",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202205",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202206",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202207",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202208",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202209",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202210",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202211",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202212",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202301",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202302",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202303",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202304",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202305",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202306",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202307",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202308",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202309",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202310",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202311",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202312",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202401",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202402",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202403",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202404",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202405",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202406",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202407",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202408",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202409",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202410",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202411",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202412",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202501",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202502",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202503",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202504",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202505",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202506",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202507",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202508",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202509",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202510",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202511",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202512",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202601",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202602",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202603",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202604",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202605",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202606",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202607",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202608",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_202609",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "sum_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "max_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "avg_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "geometry",
+          "type": "GEOMETRY('OGC:CRS84')",
+          "nullable": true
+        },
+        {
+          "name": "bbox",
+          "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+          "nullable": true
+        }
+      ],
+      "bucket_prefix": "count_20",
+      "bucket_count": 311,
+      "bucket_first": "count_200011",
+      "bucket_last": "count_202609",
+      "total_detection_pixels": 614362367,
+      "bucket_total_detection_pixels": 614362367,
+      "sample_top_cells": [
+        {
+          "a5_cell": 5419519201586970624,
+          "count": 1943365,
+          "sum_frp_mw": 33129763.88
+        },
+        {
+          "a5_cell": 5363224206244839424,
+          "count": 1863599,
+          "sum_frp_mw": 27896010.76
+        },
+        {
+          "a5_cell": 5429652300748554240,
+          "count": 1862097,
+          "sum_frp_mw": 28596169.61
+        },
+        {
+          "a5_cell": 5430778200655396864,
+          "count": 1804366,
+          "sum_frp_mw": 26739603.25
+        },
+        {
+          "a5_cell": 5412763802145914880,
+          "count": 1800558,
+          "sum_frp_mw": 28844542.43
+        }
+      ],
+      "runtime_seconds": {
+        "sample": 11.1646,
+        "total": 5.8921,
+        "bucket_validation": 9.872
+      }
+    },
+    {
+      "name": "year-2025-aggregate-r5",
+      "http": {
+        "url": "https://data.source.coop/portolan-mirrors/firms-catalog/detections/year=2025/aggregate-r5.parquet",
+        "status": 200,
+        "content_length_bytes": 2042246,
+        "etag": "\"a2406371d84ed8582ef354674541c803\"",
+        "last_modified": "Wed, 16 Sep 2026 07:09:15 GMT",
+        "checked_at_utc": "2026-11-13T16:30:23.097416+00:00"
+      },
+      "schema": [
+        {
+          "name": "a5_cell",
+          "type": "UBIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "sum_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "avg_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "max_frp",
+          "type": "DOUBLE",
+          "nullable": true
+        },
+        {
+          "name": "count_20250830",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250902",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250731",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250730",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250802",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250823",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250801",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250901",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250829",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250904",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250903",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250827",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250831",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250822",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250825",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250821",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250824",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250826",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250828",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250820",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250729",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250805",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250804",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250803",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250819",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250906",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250728",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250816",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250818",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250710",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250814",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250806",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250709",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250815",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250916",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250817",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250907",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250905",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250910",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250917",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250708",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251016",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250908",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250912",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250811",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250130",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250911",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250109",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250813",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250812",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251004",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251007",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250107",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250110",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250809",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251017",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250909",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250913",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250807",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250127",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250128",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250726",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250129",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250111",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250108",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250325",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250527",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251006",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251005",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250117",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250106",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251025",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250918",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250720",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250719",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250808",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250326",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250727",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250529",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250925",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250923",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250924",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250211",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250712",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250721",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250919",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250724",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250204",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250112",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250101",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250131",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250716",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251027",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251015",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251003",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250929",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250102",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251018",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250227",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250718",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251026",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250526",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251024",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250711",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251019",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251008",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250915",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250810",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250210",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250327",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250926",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250304",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250723",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250305",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250228",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250717",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251023",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250116",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250922",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250103",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250201",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251011",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251021",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250225",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250920",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250123",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250216",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250124",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250530",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251020",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250205",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250104",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251014",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251028",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250113",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251022",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250315",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250114",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250203",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250306",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250324",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250630",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250914",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250714",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250217",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250312",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250928",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250307",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250725",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250125",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251010",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250927",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250310",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250126",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250105",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250213",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251013",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250206",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250224",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250311",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250215",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250212",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250329",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250701",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250118",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251009",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250303",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250602",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250313",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250528",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250513",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250122",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250319",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251002",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250316",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250715",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250616",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250308",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251102",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250603",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250221",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250226",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251103",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250713",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250314",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250301",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250202",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251029",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250317",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250621",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250704",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250623",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250328",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250722",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250318",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250302",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250218",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251012",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250612",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251104",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250214",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250323",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250222",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251122",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250309",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250921",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250614",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250622",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250220",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250930",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250121",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250628",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250331",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250403",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251105",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250617",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251126",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250330",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250115",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250322",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250321",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250702",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250402",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250624",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251101",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250207",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250625",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250219",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250208",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251030",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250611",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251125",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250604",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250401",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251227",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250703",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250119",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250424",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250626",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250613",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251031",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250404",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251220",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250629",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250209",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250120",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250707",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250627",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251213",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250605",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251116",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251001",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250531",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251127",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250422",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250320",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251106",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251118",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251119",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250423",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251121",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251107",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251117",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250405",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250601",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251211",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250525",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250705",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251219",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251231",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250410",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250414",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250510",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250223",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250408",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251124",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250618",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250620",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251120",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251217",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250615",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251212",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250416",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251128",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250425",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251215",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250609",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251221",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250519",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250509",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250508",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251214",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250409",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251123",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250415",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250516",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250607",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251210",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250515",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250610",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250606",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250417",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251230",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250507",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250522",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250411",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251216",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251202",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251115",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250514",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250517",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250619",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250706",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250426",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251113",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251206",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251204",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251201",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250412",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250421",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251229",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251114",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251129",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251208",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251205",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251226",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251203",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250524",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251218",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251222",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250407",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250413",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251207",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250511",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250512",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250406",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250523",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250420",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251108",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250419",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251130",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251110",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251111",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251209",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250506",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250428",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250430",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250521",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250520",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251225",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250418",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251224",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250518",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251109",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250429",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250501",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250427",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251228",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251112",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250608",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20251223",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250505",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250502",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250503",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_20250504",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_viirs_snpp",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_viirs_noaa20",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_viirs_noaa21",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_modis",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_d",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "count_n",
+          "type": "BIGINT",
+          "nullable": true
+        },
+        {
+          "name": "geometry",
+          "type": "GEOMETRY('OGC:CRS84')",
+          "nullable": true
+        },
+        {
+          "name": "bbox",
+          "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+          "nullable": true
+        },
+        {
+          "name": "year",
+          "type": "BIGINT",
+          "nullable": true
+        }
+      ],
+      "bucket_prefix": "count_2025",
+      "bucket_count": 365,
+      "bucket_first": "count_20250101",
+      "bucket_last": "count_20251231",
+      "total_detection_pixels": 58352900,
+      "bucket_total_detection_pixels": 58352900,
+      "sample_top_cells": [
+        {
+          "a5_cell": 1508142925215694848,
+          "count": 278050,
+          "sum_frp_mw": 5483777.39
+        },
+        {
+          "a5_cell": 1499135725960953856,
+          "count": 254534,
+          "sum_frp_mw": 5928287.73
+        },
+        {
+          "a5_cell": 7482167830922657792,
+          "count": 222176,
+          "sum_frp_mw": 3214955.63
+        },
+        {
+          "a5_cell": 1507017025308852224,
+          "count": 218860,
+          "sum_frp_mw": 5879602.47
+        },
+        {
+          "a5_cell": 5429652300748554240,
+          "count": 208408,
+          "sum_frp_mw": 2704930.79
+        }
+      ],
+      "runtime_seconds": {
+        "sample": 9.8184,
+        "total": 7.4408,
+        "bucket_validation": 10.0821
+      }
+    }
+  ],
+  "caveats": [
+    "Counts are detected thermal-anomaly pixels, not unique fires or burned area.",
+    "All-time monthly buckets are mixed-fleet raw counts and are not harmonized.",
+    "Year aggregates have separate daily and per-sensor totals, not day-by-sensor cross-tabs.",
+    "Positive-only detection tables cannot prove observed no-fire coverage."
+  ]
+}
