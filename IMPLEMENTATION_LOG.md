@@ -141,3 +141,33 @@ These are raw mixed-fleet detected-pixel counts from an independent mirror of
 NASA FIRMS. They are not unique fires, burned area, coverage evidence, or a
 harmonized trend. Month-by-sensor conclusions cannot be drawn from these
 aggregate cells because the required cross-tab is absent.
+
+## 2026-11-13 — Phase 02: visual foundation
+
+### What changed
+
+- Rebuilt `/` as a cinematic editorial opening frame using the fixed EMBER
+  tokens and Space Grotesk / Inter / IBM Plex Mono through `next/font`.
+- Added a responsive, data-driven orthographic planet using Phase 01 cells,
+  keyboard-accessible period controls, region selection, and working `/explore`
+  and `/method` destinations.
+- Added truthful loading/error states. The error state explicitly says no
+  substitute observations were inserted.
+
+### Verification
+
+- `npm run check`: PASS — lint, typecheck, 4 unit tests, production build.
+- `npm run e2e`: PASS — 3 browser tests, including real period switching and
+  no-horizontal-overflow assertions at 1440×900 and 390×844.
+- First visual pass exposed a hydration warning and mobile dev indicator. Both
+  were fixed; the second pass had no browser hydration warning.
+- Final inspected screenshots:
+  `artifacts/screenshots/phase02-home-1440x900.png` and
+  `artifacts/screenshots/phase02-home-390x844.png`.
+- Detailed critique and two-pass evidence: `docs/VISUAL_REVIEW.md`.
+
+### Scientific status
+
+Every visible point is derived from the real Phase 01 aggregate preview. The
+stage labels the values as raw detected pixels, names the independent mirror,
+and states that the mixed-fleet display is not harmonized.
