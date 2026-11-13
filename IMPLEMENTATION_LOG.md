@@ -171,3 +171,46 @@ aggregate cells because the required cross-tab is absent.
 Every visible point is derived from the real Phase 01 aggregate preview. The
 stage labels the values as raw detected pixels, names the independent mirror,
 and states that the mixed-fleet display is not harmonized.
+
+## 2026-11-13 — Phase 03: interactive globe and timeline
+
+### What changed
+
+- Replaced the CSS planet with a dynamically loaded `react-globe.gl` / Three.js
+  scene. It uses the complete 1,200-cell Phase 01 display cap, merged into one
+  point mesh, with no random coordinates or invented arcs.
+- Added drag, wheel, and pinch controls; interaction cancels auto-rotation. A
+  globe click returns a latitude/longitude selection and focuses the camera.
+  The regional select provides an accessible non-canvas focus path.
+- Implemented explicit `idle`, `scrubbing`, `playing`, and `paused` timeline
+  states. Dates, totals, and point data change together and remain labeled raw
+  mixed-fleet / not harmonized.
+- Downloaded the official NASA/GSFC SVS 2048×1024 Blue Marble texture locally.
+  The SHA-256 is
+  `AE6214B078ED0864C96F74BCB10AE3021F6EB116F8059797EFE0FA9EA8B89D35`;
+  full provenance and credit are recorded in `docs/GLOBE_ENGINE.md`.
+- Added an SSR-safe, WebGL-unavailable fallback and reduced-motion handling.
+
+### Verification and refinement
+
+- `npm run check`: PASS — lint, strict typecheck, 4 unit tests, production build.
+- `npm run e2e`: PASS — 6/6 serialized Edge tests in 54.9 seconds. Tests cover
+  actual WebGL readiness, both real months, globe click geolocation, timeline
+  state transitions, console errors, and desktop/mobile overflow.
+- Visual pass one exposed a container-measurement race that produced different
+  globe scales between screenshots. The WebGL component now waits for the first
+  `ResizeObserver` measurement, and a second inspected pass shows a stable scale.
+- Final evidence:
+  `artifacts/screenshots/phase03-home-2025-08-1440x900.png`,
+  `artifacts/screenshots/phase03-home-2020-01-1440x900.png`, and
+  `artifacts/screenshots/phase03-home-390x844.png`.
+- Production builds now use Next.js's Webpack path. Turbopack repeatedly panicked
+  while spawning its CSS worker inside the Windows sandbox; Webpack completed
+  the same optimized build successfully.
+
+### Scientific status
+
+The global month values remain raw detected-pixel counts from an independent
+mirror of NASA FIRMS. Marker height and radius encode a logarithmic transform of
+real cell count only; they do not represent flame height, radiative power,
+burned area, or unique fires.

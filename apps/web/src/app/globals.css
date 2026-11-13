@@ -246,6 +246,81 @@ select {
   justify-items: end;
 }
 
+.globe-host {
+  position: absolute;
+  inset: 0 -14% 0 0;
+  overflow: hidden;
+  border-radius: 50%;
+  touch-action: none;
+}
+
+.globe-host canvas {
+  display: block;
+  cursor: grab;
+}
+
+.globe-host canvas:active {
+  cursor: grabbing;
+}
+
+.globe-control-hint {
+  position: absolute;
+  right: 15%;
+  bottom: 8%;
+  z-index: 5;
+  margin: 0;
+  color: rgba(168, 180, 192, 0.56);
+  font-family: var(--font-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.globe-fallback {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  width: min(68vw, 620px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(168, 180, 192, 0.18);
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 34%, #244955, #0b1924 50%, #03070d 75%);
+  box-shadow: 0 0 100px rgba(54, 80, 90, 0.22);
+  transform: translateY(-50%);
+}
+
+.fallback-orbit,
+.fallback-grid {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.fallback-grid {
+  opacity: 0.42;
+  background:
+    repeating-radial-gradient(ellipse at center, transparent 0 12%, rgba(168, 180, 192, 0.09) 12.2% 12.45%),
+    linear-gradient(90deg, transparent 49.8%, rgba(168, 180, 192, 0.08) 50%, transparent 50.2%);
+}
+
+.fallback-orbit {
+  background: linear-gradient(106deg, transparent 24%, rgba(3, 7, 13, 0.12) 47%, rgba(3, 7, 13, 0.86) 77%);
+}
+
+.fallback-label {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  color: var(--subtle);
+  font-family: var(--font-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
 .data-globe {
   position: absolute;
   right: -16%;
@@ -337,6 +412,43 @@ select {
   text-transform: uppercase;
 }
 
+.texture-credit {
+  max-width: 34ch;
+  color: rgba(109, 124, 141, 0.7);
+  font-size: 7px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.globe-selection {
+  position: absolute;
+  z-index: 6;
+  left: 4%;
+  bottom: 11%;
+  display: grid;
+  max-width: 260px;
+  gap: 4px;
+  border-left: 1px solid var(--ember);
+  background: linear-gradient(90deg, rgba(5, 9, 17, 0.92), rgba(5, 9, 17, 0));
+  padding: 8px 18px;
+  font-family: var(--font-mono), monospace;
+}
+
+.globe-selection span,
+.globe-selection small {
+  color: var(--subtle);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.globe-selection strong {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
 .stage-legend i {
   display: inline-block;
   width: 5px;
@@ -379,6 +491,29 @@ select {
 .period-control {
   display: flex;
   gap: 2px;
+}
+
+.period-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.playback-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(16, 27, 41, 0.72);
+  color: var(--ember-bright);
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.playback-button[aria-pressed="true"] {
+  border-color: rgba(233, 116, 67, 0.55);
 }
 
 .period-control button {
@@ -524,6 +659,15 @@ select {
     min-height: 440px;
   }
 
+  .globe-host {
+    inset: 0 -30% 0 -4%;
+  }
+
+  .globe-control-hint {
+    right: 24%;
+    bottom: 7%;
+  }
+
   .data-globe {
     right: -30%;
     width: min(116vw, 560px);
@@ -535,8 +679,13 @@ select {
   }
 
   .stage-legend {
-    right: 0;
+    right: 1%;
     bottom: 4%;
+  }
+
+  .globe-selection {
+    left: 0;
+    bottom: 7%;
   }
 
   .timeline-ribbon {
@@ -578,6 +727,14 @@ select {
     min-height: 390px;
   }
 
+  .globe-host {
+    inset: 0 -38% 0 -16%;
+  }
+
+  .globe-control-hint {
+    display: none;
+  }
+
   .data-globe {
     right: -28%;
     width: 112vw;
@@ -588,12 +745,32 @@ select {
     right: auto;
   }
 
+  .stage-legend {
+    right: 0;
+  }
+
+  .texture-credit {
+    max-width: 26ch;
+  }
+
+  .globe-selection {
+    right: 0;
+    bottom: 25%;
+    left: auto;
+    max-width: 190px;
+    background: rgba(5, 9, 17, 0.84);
+  }
+
   .timeline-ribbon {
     grid-template-columns: 1fr;
   }
 
   .period-control {
     justify-content: flex-start;
+  }
+
+  .period-cluster {
+    align-items: flex-start;
   }
 }
 

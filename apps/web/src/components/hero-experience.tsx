@@ -1,45 +1,71 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import preview from "../../public/data/global-preview.json";
+import { GlobeScene } from "./globe-scene";
 
 type RegionId = "punjab" | "california";
+type TimelineState = "idle" | "scrubbing" | "playing" | "paused";
+type Selection = { lat: number; lng: number; label: string };
 
-const regions: Array<{ id: RegionId; label: string }> = [
-  { id: "punjab", label: "Punjab, Pakistan" },
-  { id: "california", label: "California, USA" },
+const regions: Array<{
+  id: RegionId;
+  label: string;
+  lat: number;
+  lng: number;
+}> = [
+  { id: "punjab", label: "Punjab, Pakistan", lat: 31.2, lng: 72.4 },
+  { id: "california", label: "California, USA", lat: 37.2, lng: -119.6 },
 ];
 
-const number = new Intl.NumberFormat("en", { notation: "compact" });
+const compactNumber = new Intl.NumberFormat("en", { notation: "compact" });
+const coordinate = new Intl.NumberFormat("en", { maximumFractionDigits: 2 });
 
-function project(lat: number, lng: number, centerLongitude = 18) {
-  const latitude = (lat * Math.PI) / 180;
-  const longitude = ((lng - centerLongitude) * Math.PI) / 180;
-  const visibility = Math.cos(latitude) * Math.cos(longitude);
-
-  return {
-    visible: visibility > 0,
-    x: 50 + 46 * Math.cos(latitude) * Math.sin(longitude),
-    y: 50 - 46 * Math.sin(latitude),
-  };
+function coordinateLabel(lat: number, lng: number) {
+  return `${coordinate.format(Math.abs(lat))}°${lat >= 0 ? "N" : "S"}, ${coordinate.format(Math.abs(lng))}°${lng >= 0 ? "E" : "W"}`;
 }
 
 export function HeroExperience() {
   const [periodIndex, setPeriodIndex] = useState(1);
   const [region, setRegion] = useState<RegionId>("punjab");
+  const [timelineState, setTimelineState] = useState<TimelineState>("idle");
+  const [selection, setSelection] = useState<Selection | null>(null);
   const period = preview.periods[periodIndex];
 
-  const points = useMemo(() => {
-    const max = Math.max(...period.cells.map((cell) => cell.count));
-    return period.cells.slice(0, 420).flatMap((cell) => {
-      const position = project(cell.lat, cell.lng);
-      if (!position.visible) return [];
-      const intensity = Math.log1p(cell.count) / Math.log1p(max);
-      return [{ ...cell, ...position, intensity }];
+  useEffect(() => {
+    if (timelineState !== "playing") return;
+    const timer = window.setInterval(() => {
+      setPeriodIndex((current) => (current + 1) % preview.periods.length);
+    }, 2800);
+    return () => window.clearInterval(timer);
+  }, [timelineState]);
+
+  const choosePeriod = (index: number) => {
+    setTimelineState("scrubbing");
+    setPeriodIndex(index);
+    window.requestAnimationFrame(() => setTimelineState("idle"));
+  };
+
+  const chooseRegion = (id: RegionId) => {
+    const next = regions.find((item) => item.id === id) ?? regions[0];
+    setRegion(id);
+    setSelection({ lat: next.lat, lng: next.lng, label: next.label });
+  };
+
+  const handleGlobeSelect = useCallback((coords: { lat: number; lng: number }) => {
+    setSelection({
+      ...coords,
+      label: `Selected coordinate · ${coordinateLabel(coords.lat, coords.lng)}`,
     });
-  }, [period]);
+  }, []);
+
+  const stopPlayback = useCallback(() => {
+    setTimelineState((current) =>
+      current === "playing" ? "paused" : current,
+    );
+  }, []);
 
   return (
     <main className="hero-shell">
@@ -70,10 +96,10 @@ export function HeroExperience() {
 
             <div className="hero-actions">
               <label className="region-field">
-                <span>Choose a starting region</span>
+                <span>Accessible region focus</span>
                 <select
                   value={region}
-                  onChange={(event) => setRegion(event.target.value as RegionId)}
+                  onChange={(event) => chooseRegion(event.target.value as RegionId)}
                 >
                   {regions.map((option) => (
                     <option key={option.id} value={option.id}>
@@ -84,7 +110,11 @@ export function HeroExperience() {
               </label>
               <Link
                 className="primary-action"
-                href={`/explore?region=${region}&year=${period.period.slice(0, 4)}`}
+                href={
+                  selection
+                    ? `/explore?lat=${selection.lat.toFixed(4)}&lng=${selection.lng.toFixed(4)}&year=${period.period.slice(0, 4)}`
+                    : `/explore?region=${region}&year=${period.period.slice(0, 4)}`
+                }
               >
                 Explore the atlas
                 <span aria-hidden="true">↗</span>
@@ -95,56 +125,74 @@ export function HeroExperience() {
             </div>
           </div>
 
-          <div className="globe-stage" aria-label="Raw detection preview">
+          <div className="globe-stage" aria-label="Interactive raw detection globe">
+            <GlobeScene
+              cells={period.cells}
+              period={period.period}
+              selection={selection}
+              onSelect={handleGlobeSelect}
+              onInteraction={stopPlayback}
+            />
+
             <div className="stage-annotation stage-annotation-top">
               <span>Raw detected pixels</span>
-              <strong>{number.format(period.globalTotal)}</strong>
+              <strong>{compactNumber.format(period.globalTotal)}</strong>
               <small>global / {period.period}</small>
             </div>
 
-            <div className="data-globe" aria-hidden="true">
-              <div className="globe-grid" />
-              <div className="globe-shade" />
-              {points.map((point) => (
-                <i
-                  key={point.id}
-                  className="detection-point"
-                  style={
-                    {
-                      left: `${point.x.toFixed(4)}%`,
-                      top: `${point.y.toFixed(4)}%`,
-                      "--point-scale": (0.42 + point.intensity * 1.1).toFixed(4),
-                      "--point-alpha": (0.2 + point.intensity * 0.72).toFixed(4),
-                    } as React.CSSProperties
-                  }
-                />
-              ))}
-            </div>
+            {selection ? (
+              <div className="globe-selection" data-testid="globe-selection" role="status">
+                <span>Focused location</span>
+                <strong>{selection.label}</strong>
+                <small>{coordinateLabel(selection.lat, selection.lng)}</small>
+              </div>
+            ) : null}
 
             <div className="stage-legend">
               <span><i /> Higher cell count</span>
               <span className="stage-warning">Raw mixed fleet · not harmonized</span>
+              <span className="texture-credit">Earth texture: NASA/GSFC SVS · Reto Stöckli</span>
             </div>
           </div>
         </section>
 
-        <section className="timeline-ribbon" aria-labelledby="time-heading">
+        <section
+          className="timeline-ribbon"
+          aria-labelledby="time-heading"
+          data-timeline-state={timelineState}
+        >
           <div className="timeline-intro">
             <p id="time-heading">Select a verified snapshot</p>
             <span>Exact yearly r5 aggregate · top 1,200 cells retained</span>
           </div>
-          <div className="period-control" role="group" aria-label="Preview month">
-            {preview.periods.map((item, index) => (
-              <button
-                key={item.period}
-                type="button"
-                aria-pressed={periodIndex === index}
-                onClick={() => setPeriodIndex(index)}
-              >
-                <span>{item.period.slice(0, 4)}</span>
-                <strong>{item.period.slice(5)}</strong>
-              </button>
-            ))}
+          <div className="period-cluster">
+            <button
+              className="playback-button"
+              type="button"
+              aria-label={timelineState === "playing" ? "Pause timeline" : "Play timeline"}
+              aria-pressed={timelineState === "playing"}
+              onClick={() =>
+                setTimelineState((current) =>
+                  current === "playing" ? "paused" : "playing",
+                )
+              }
+            >
+              {timelineState === "playing" ? "Ⅱ" : "▶"}
+            </button>
+            <div className="period-control" role="group" aria-label="Preview month">
+              {preview.periods.map((item, index) => (
+                <button
+                  key={item.period}
+                  type="button"
+                  aria-label={`${item.period.slice(0, 4)} ${item.period.slice(5)}`}
+                  aria-pressed={periodIndex === index}
+                  onClick={() => choosePeriod(index)}
+                >
+                  <span>{item.period.slice(0, 4)}</span>
+                  <strong>{item.period.slice(5)}</strong>
+                </button>
+              ))}
+            </div>
           </div>
           <p className="source-note">
             NASA LANCE FIRMS · independent Portolan / Source Cooperative mirror ·
