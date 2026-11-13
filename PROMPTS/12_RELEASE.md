@@ -1,0 +1,5 @@
+# PROMPT 12 — Ship and demo, no surprises
+
+Freeze new features. Rerun entire smoke suite and build in production mode; verify all assets/licenses/attribution, cache/offline snapshot, clean environment, and no secrets in client JS/repository. Provide reproducible Python data-processing commands; note archive snapshot and NRT limitations. Generate README with local setup, env vars, data licenses/source credits, routes, demo flow, acceptance checks and known constraints. Confirm an achievable deployment target only if credentials/platform available; otherwise build and provide a deployment-ready output with exact instructions (do not invent deployed URL). Prepare a ~100-second demo script with precise clicks and one defensible discovery derived from computed data. Create `docs/SUBMISSION_STORY.md` and `docs/FINAL_STATUS.md` showing actual implemented/unfinished features.
+
+COMPLETE WHEN: local production build launches, default journey works without external keys, screenshots/videos/sources are documented, major tests pass. Do NOT declare completed if data is fabricated or the site has empty scientific pages.

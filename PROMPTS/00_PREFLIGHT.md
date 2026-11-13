@@ -1,0 +1,7 @@
+# PROMPT 00 — Preflight + tooling (paste into Codex)
+
+Act as the lead engineer. Read AGENTS.md, MASTER_PROMPT.md, DESIGN_BIBLE.md, SCIENCE_CONTRACT.md, SOURCES.md, QA_ACCEPTANCE.md. Inspect local directory before touching anything. Check Node/Python/Git, package managers, internet access and current Codex tools. Inspect configured MCP tools; make a capability matrix for Playwright, Context7, Figma. If Playwright or Context7 is missing and Codex can add them using documented CLI commands, configure them only with appropriate permissions; if authentication required, document exact unblock step while continuing independent tasks. Treat Figma as OPTIONAL: if no design reference exists, implement exact DESIGN_BIBLE instead.
+
+Write `IMPLEMENTATION_LOG.md` and `docs/ARCHITECTURE.md` with evidence of installed capabilities, actual available software, selected stack and technical risks. Set up a Next.js App Router TS/Tailwind project only after checking that no user app exists. Use current compatible versions and lockfile. Add `.env.example`, `.gitignore`, scripts for lint/build/typecheck/test/e2e, and basic CI or a runnable local check. Do not install gratuitous packages. No fake demo data.
+
+ACCEPTANCE: `npm run build` passes on a starter project; lockfile exists; routes can be created; tool matrix truthful; current versions recorded; `IMPLEMENTATION_LOG.md` opened; no keys leaked. Give actual commands and logs. If configuration blockers persist, keep executing offline work.

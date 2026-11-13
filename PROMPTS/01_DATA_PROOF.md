@@ -1,0 +1,7 @@
+# PROMPT 01 — Prove real data access before visual work
+
+Do not start with elaborate UI. First, read Portolan mirror's AGENTS.md directly from its documented source. Establish true schema of alltime r5 and a year r5 aggregate with DuckDB. Query several rows from public HTTPS GeoParquet; record queries, column schemas, size and runtime in `docs/DATA_PROOF.md`. Include a robust fallback: if mirror inaccessible, query NASA official archive or document exact steps for user-acquired files; do not invent data.
+
+Create `pipeline/` with pinned requirements/lock or reproducible env instructions and `pipeline/inspect_source.py`, `pipeline/build_global_preview.py` to generate an actually derived, compact globe JSON for two different months/years. Avoid relying on alltime file when a year is needed; ensure time-series counts come from correctly named bucket columns. Include provenance (NASA original, mirror URL, source snapshot, query, transformation, sensor mix/caveats). Add a small validation script that rejects empty outputs and makes sure different months truly contain different values. Store derived compact files under public/data with attribution; no random hotspots.
+
+ACCEPTANCE: Execute a remote data query, save real nonzero aggregate rows and provenance, validate numeric totals, demonstrate time selection changes data, provide exact reproducible commands. If external source inaccessible, say blocked and keep data interfaces scaffolded rather than claiming real completion.

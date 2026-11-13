@@ -1,0 +1,5 @@
+# PROMPT 13 — Judge attack test / challenge the project
+
+Act as an adversarial NASA scientist, a 3D graphics engineer, a frontend design director, and a hackathon judge. Examine EMBER's source, outputs and actual rendered website. Ask and answer with evidence: (1) Why are raw MODIS/VIIRS counts not directly comparable? (2) Where is actual calibration validated, if present? (3) What does a no-hotspot day mean? (4) Did an added sensor create a false historical increase? (5) How do we avoid fabricated insights? (6) What is demonstrably better than ordinary FIRMS/Portolan visualization? (7) Does cinematic interaction help the decision or merely decorate it? (8) What fails live in 2 minutes? (9) Does the app work on a mid-range Windows laptop and phone? (10) Where are dataset/provenance and reproducible commands?
+
+Create `docs/JUDGE_ATTACK_REPORT.md` with critical/major/minor findings. Implement critical fixes and rerun proof, visual and scientific tests. Be candid if novel scientific value is not yet proven; sharpen story rather than invent evidence.

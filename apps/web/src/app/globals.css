@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050911;
+  --foreground: #f2f3f0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ember-haze {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 80% 49%, rgba(233, 116, 67, 0.08), transparent 27%),
+    radial-gradient(circle at 66% 52%, rgba(54, 80, 90, 0.12), transparent 42%);
+}
+
+.planet-shell {
+  position: relative;
+  width: min(64vw, 520px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(168, 180, 192, 0.2);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 32%, rgba(244, 163, 110, 0.16), transparent 8%),
+    radial-gradient(circle at 46% 42%, #263f48 0 4%, transparent 4.6%),
+    radial-gradient(circle at 61% 57%, #1f343d 0 6%, transparent 6.6%),
+    radial-gradient(circle at 49% 50%, #142733 0, #09131d 58%, #03070c 75%);
+  box-shadow:
+    0 0 80px rgba(54, 80, 90, 0.18),
+    inset -54px -22px 80px rgba(0, 0, 0, 0.8);
+}
+
+.planet-shell::before,
+.planet-shell::after,
+.planet-grid,
+.planet-terminator {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  content: "";
+}
+
+.planet-shell::before {
+  inset: 7%;
+  border: 1px solid rgba(168, 180, 192, 0.12);
+}
+
+.planet-shell::after {
+  inset: -2%;
+  border: 1px solid rgba(244, 163, 110, 0.12);
+}
+
+.planet-grid {
+  opacity: 0.38;
+  background:
+    repeating-radial-gradient(circle at center, transparent 0 13%, rgba(168, 180, 192, 0.08) 13.3% 13.6%),
+    linear-gradient(90deg, transparent 49.8%, rgba(168, 180, 192, 0.1) 50%, transparent 50.2%);
+}
+
+.planet-terminator {
+  background: linear-gradient(108deg, transparent 22%, rgba(2, 5, 9, 0.18) 46%, rgba(2, 5, 9, 0.9) 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

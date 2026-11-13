@@ -1,0 +1,7 @@
+# PROMPT 03 — Interactive 3D Earth with real time-driven data
+
+Implement GlobeScene using `react-globe.gl` and its documented API (read upstream examples). Client-side dynamic loading only; SSR-safe fallback. Source Earth texture from a properly licensed/attributed NASA Blue Marble equirectangular image, stored locally or used from an approved endpoint. Use actual month-selected coarse A5 aggregate data from phase 01; convert A5 cell geography carefully using documented tooling or geometry already in source. Rendering few thousand points/cells at most; cap/pool markers and pre-aggregate; no fictional trajectory arcs or random point coordinates.
+
+Implement a finite-state timeline (idle, scrubbing, playing, paused), time-data loading, legend, a date label tied to actual data, click selection, camera focus, and smooth fallback if WebGL unsupported. Use 3D atmosphere sparingly, accurate shading, and limited post-processing only if it measurably helps. Avoid compositing two full 3D engines and avoid framerate-killing many lights. Provide controls for wheel/pinch/drag, stop auto-rotation on interaction, accessible region search fallback.
+
+ACCEPTANCE: screenshots of at least two distinct real months show different data; click returns geolocated region selection; timeline keeps responsive; Playwright test; browser console clean; hero performant on midrange laptop. Mark global series as raw, not harmonized.

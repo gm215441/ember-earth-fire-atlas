@@ -1,0 +1,5 @@
+# PROMPT 11 — Full design/engineering redline
+
+Now perform an adversarial visual and functional audit. Run dev server; use Playwright MCP or Playwright Test to inspect `/`, `/explore`, `/calendar`, `/compare`, `/passport`, `/method` at desktop 1440×900/1280×720 and mobile 390×844/360×740. Save screenshots; inspect visual hierarchy, globe silhouette, annotation legibility, contrast, map attribution, scroll behavior, route transition, hover/focus, interactions, performance, console and network. Read DESIGN_BIBLE and QA_ACCEPTANCE and produce itemized deficiency list (severity 1–3). FIX all severity-1/2 defects before release. Do at least two intentional visual polish passes, not just lint.
+
+Test WebGL unavailable, source API down, zero data, reduced motion, slow network, keyboard-only mode and print. Run lint/build/unit/E2E and show actual pass/fail logs. Do not claim pixel-perfect Figma parity unless a real Figma frame exists and was compared. Create `docs/QA_REPORT.md` with screenshots paths and outstanding issues.
