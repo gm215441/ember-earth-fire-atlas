@@ -17,7 +17,7 @@ type GlobeCanvasProps = {
   width: number;
   height: number;
   points: GlobePoint[];
-  focus: { lat: number; lng: number } | null;
+  focus: { lat: number; lng: number; altitude?: number } | null;
   reducedMotion: boolean;
   onSelect: (coords: { lat: number; lng: number }) => void;
   onInteraction: () => void;
@@ -36,6 +36,7 @@ export default function GlobeCanvas({
 }: GlobeCanvasProps) {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const interactionRef = useRef(onInteraction);
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     interactionRef.current = onInteraction;
@@ -68,36 +69,56 @@ export default function GlobeCanvas({
     if (!focus || !globeRef.current) return;
     globeRef.current.controls().autoRotate = false;
     globeRef.current.pointOfView(
-      { lat: focus.lat, lng: focus.lng, altitude: 1.48 },
+      { lat: focus.lat, lng: focus.lng, altitude: focus.altitude ?? 1.48 },
       reducedMotion ? 0 : 900,
     );
   }, [focus, reducedMotion]);
 
   return (
-    <Globe
-      ref={globeRef}
-      width={width}
-      height={height}
-      backgroundColor="rgba(0,0,0,0)"
-      globeImageUrl="/images/bluemarble-2048.png"
-      showAtmosphere
-      atmosphereColor="#6f9ca9"
-      atmosphereAltitude={0.11}
-      showGraticules={false}
-      pointsData={points}
-      pointLat="lat"
-      pointLng="lng"
-      pointColor="color"
-      pointAltitude="altitude"
-      pointRadius="radius"
-      pointResolution={5}
-      pointsMerge
-      pointsTransitionDuration={reducedMotion ? 0 : 650}
-      onGlobeReady={onReady}
-      onGlobeClick={(coords) => {
+    <div
+      className="globe-canvas-shell"
+      style={{ width, height }}
+      onPointerDown={(event) => {
+        pointerStartRef.current = { x: event.clientX, y: event.clientY };
+      }}
+      onPointerUp={(event) => {
+        const start = pointerStartRef.current;
+        pointerStartRef.current = null;
+        if (!start || Math.hypot(event.clientX - start.x, event.clientY - start.y) > 6) {
+          return;
+        }
+
+        const bounds = event.currentTarget.getBoundingClientRect();
+        const coords = globeRef.current?.toGlobeCoords(
+          event.clientX - bounds.left,
+          event.clientY - bounds.top,
+        );
+        if (!coords) return;
         onInteraction();
         onSelect(coords);
       }}
-    />
+    >
+      <Globe
+        ref={globeRef}
+        width={width}
+        height={height}
+        backgroundColor="rgba(0,0,0,0)"
+        globeImageUrl="/images/bluemarble-2048.png"
+        showAtmosphere
+        atmosphereColor="#6f9ca9"
+        atmosphereAltitude={0.11}
+        showGraticules={false}
+        pointsData={points}
+        pointLat="lat"
+        pointLng="lng"
+        pointColor="color"
+        pointAltitude="altitude"
+        pointRadius="radius"
+        pointResolution={5}
+        pointsMerge
+        pointsTransitionDuration={reducedMotion ? 0 : 650}
+        onGlobeReady={onReady}
+      />
+    </div>
   );
 }

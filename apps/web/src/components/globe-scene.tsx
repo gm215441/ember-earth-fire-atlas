@@ -15,7 +15,7 @@ type Cell = { id: number; lat: number; lng: number; count: number };
 type GlobeSceneProps = {
   cells: Cell[];
   period: string;
-  selection: { lat: number; lng: number } | null;
+  selection: { lat: number; lng: number; altitude?: number } | null;
   onSelect: (coords: { lat: number; lng: number }) => void;
   onInteraction: () => void;
 };

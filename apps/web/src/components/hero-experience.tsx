@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 import preview from "../../public/data/global-preview.json";
+import { DocumentarySequence } from "./documentary-sequence";
 import { GlobeScene } from "./globe-scene";
 
 type RegionId = "punjab" | "california";
@@ -26,7 +27,6 @@ const coordinate = new Intl.NumberFormat("en", { maximumFractionDigits: 2 });
 function coordinateLabel(lat: number, lng: number) {
   return `${coordinate.format(Math.abs(lat))}°${lat >= 0 ? "N" : "S"}, ${coordinate.format(Math.abs(lng))}°${lng >= 0 ? "E" : "W"}`;
 }
-
 export function HeroExperience() {
   const [periodIndex, setPeriodIndex] = useState(1);
   const [region, setRegion] = useState<RegionId>("punjab");
@@ -200,6 +200,7 @@ export function HeroExperience() {
           </p>
         </section>
       </div>
+      <DocumentarySequence />
     </main>
   );
 }

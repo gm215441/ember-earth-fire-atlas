@@ -17,14 +17,17 @@ test("renders the EMBER hero without implying harmonization", async ({
     }),
   ).toBeVisible();
   await expect(
-    page.getByText(/raw mixed fleet · not harmonized/i),
+    page.locator(".hero-frame").getByText("Raw mixed fleet · not harmonized", {
+      exact: true,
+    }),
   ).toBeVisible();
 });
 
 test("changes the rendered real-data snapshot", async ({ page }) => {
-  await expect(page.getByText("8.4M")).toBeVisible();
+  const globeStage = page.locator(".globe-stage");
+  await expect(globeStage.getByText("8.4M", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: /2020 01/ }).click();
-  await expect(page.getByText("4.1M")).toBeVisible();
+  await expect(globeStage.getByText("4.1M", { exact: true })).toBeVisible();
 });
 
 test("clicking the globe returns a geolocated selection", async ({ page }) => {
@@ -58,6 +61,7 @@ test("timeline playback remains responsive and pauses on interaction", async ({
 test("captures distinct real months and responsive phase 03 evidence", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.reload();
   await expect(page.locator('[data-globe-ready="true"]')).toBeVisible({
@@ -71,7 +75,9 @@ test("captures distinct real months and responsive phase 03 evidence", async ({
   });
 
   await page.getByRole("button", { name: "2020 01" }).click();
-  await expect(page.getByText("4.1M")).toBeVisible();
+  await expect(
+    page.locator(".globe-stage").getByText("4.1M", { exact: true }),
+  ).toBeVisible();
   await page.screenshot({
     path: "../../artifacts/screenshots/phase03-home-2020-01-1440x900.png",
   });
@@ -100,4 +106,66 @@ test("keeps the browser console clean", async ({ page }) => {
     timeout: 20_000,
   });
   expect(errors).toEqual([]);
+});
+
+test("documentary scroll does not overwrite a manual month", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.reload();
+  const documentary = page.locator(".documentary");
+  await expect(documentary).toHaveAttribute("data-enhanced", "true");
+
+  await page.getByRole("button", { name: "2020-01" }).click();
+  await expect(page.getByRole("button", { name: "2020-01" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+
+  await page.locator('[data-documentary-marker="2"]').scrollIntoViewIfNeeded();
+  await expect(documentary).toHaveAttribute("data-active-scene", "2");
+  await expect(page.getByRole("button", { name: "2020-01" })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+});
+
+test("documentary motion can be paused without scroll lock", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.reload();
+  const documentary = page.locator(".documentary");
+  await expect(documentary).toHaveAttribute("data-enhanced", "true");
+  await page.getByRole("button", { name: "Pause motion" }).click();
+  await expect(documentary).toHaveAttribute("data-motion-paused", "true");
+  await expect(documentary).not.toHaveAttribute("data-enhanced", "true");
+  expect(
+    await page.evaluate(() => getComputedStyle(document.body).overflowY),
+  ).not.toBe("hidden");
+});
+
+test("captures three documentary states and the compact layout", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.reload();
+  const documentary = page.locator(".documentary");
+  await expect(documentary).toHaveAttribute("data-enhanced", "true");
+
+  for (const scene of [0, 1, 3]) {
+    await page
+      .locator(`[data-documentary-marker="${scene}"]`)
+      .scrollIntoViewIfNeeded();
+    await expect(documentary).toHaveAttribute(
+      "data-active-scene",
+      String(scene),
+    );
+    await page.screenshot({
+      path: `../../artifacts/screenshots/phase04-scene-${scene + 1}-1440x900.png`,
+    });
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator(".documentary-header").scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => document.body.scrollWidth)).toBeLessThanOrEqual(
+    390,
+  );
+  await page.screenshot({
+    path: "../../artifacts/screenshots/phase04-documentary-390x844.png",
+  });
 });

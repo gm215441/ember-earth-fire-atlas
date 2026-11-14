@@ -214,3 +214,50 @@ The global month values remain raw detected-pixel counts from an independent
 mirror of NASA FIRMS. Marker height and radius encode a logarithmic transform of
 real cell count only; they do not represent flame height, radiative power,
 burned area, or unique fires.
+
+## 2026-11-14 — Phase 04: cinematic documentary sequence
+
+### What changed
+
+- Installed GSAP 3.15.1 and `@gsap/react` 2.1.2, then added a four-scene
+  ScrollTrigger documentary beneath the existing hero. The page still contains
+  only one WebGL engine; the documentary lens is a lightweight projection of
+  the same real Phase 01 cells.
+- Added purposeful scene transitions, restrained camera scaling, real-month data
+  changes, sensor-history captions, a skip link, pause motion, keyboard scene
+  controls, a compact linear layout, and reduced-motion behavior.
+- Manual documentary month selection locks its state, so scroll callbacks cannot
+  overwrite a user's choice. The main hero timeline remains a separate state
+  machine and is never controlled by documentary scrolling.
+- Made globe click geolocation deterministic with `toGlobeCoords` and a movement
+  threshold that distinguishes click selection from drag rotation.
+- Marked the temporary `/explore` route as non-instant until Phase 05 replaces it,
+  removing the Next.js URL-data warning without fabricating content.
+
+### Regression and refinement
+
+The first story integration disrupted the compact live hero by stacking every
+scene inside it. After the user reported the layout regression, the committed
+Phase 03 hero and CSS were restored immediately and visually verified. The final
+implementation isolates the narrative below the hero. Two subsequent visual
+passes removed a visible skip-link leak and a footer overlap.
+
+### Verification
+
+- `npm run check`: PASS — lint, strict TypeScript, 4 unit tests, and production
+  Webpack build.
+- `npx playwright test --trace on`: PASS — 9/9 Edge tests in 1.8 minutes.
+- Globe click stress test: PASS — 3/3 consecutive attempts.
+- Evidence: `artifacts/screenshots/phase04-scene-1-1440x900.png`,
+  `phase04-scene-2-1440x900.png`, `phase04-scene-4-1440x900.png`,
+  `phase04-documentary-390x844.png`, and
+  `artifacts/traces/phase04-documentary-playwright.zip`.
+- The inspected frames communicate the sequence without voiceover and retain no
+  horizontal overflow at 390×844.
+
+### Scientific status
+
+The story captions distinguish a satellite-detected pixel from a unique fire,
+label the global series raw/not harmonized, and cite NASA ARSET for platform
+history and spatial-resolution context. No cross-sensor trend or causal fire
+type is inferred from the aggregate snapshots.
