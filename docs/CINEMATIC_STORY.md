@@ -19,7 +19,12 @@ stage while four markers activate:
 4. a regional coordinate field plots real rows inside a disclosed bounding box.
 
 Each chapter has a separate visual system rather than reusing one globe. GSAP
-crossfades and gently resolves each plate without continuous decoration. A user's explicit
+crossfades and gently resolves each plate without continuous decoration. The
+incoming text and evidence plate share the same 620 ms arrival window and finish
+together. A single section-level ScrollTrigger snaps a completed scroll gesture
+to the nearest chapter, preventing half-resolved in-between frames. Scene-nav
+buttons land directly on the exact chapter coordinate while the same synchronized
+transition provides the visible motion. A user's explicit
 month choice sets a lock, after which scrolling cannot overwrite that choice.
 The Phase 03 hero timeline is entirely outside the story state and remains
 independent.
@@ -83,6 +88,8 @@ Final verification:
 
 - `npm run check`: PASS — lint, typecheck, 4 unit tests, production build.
 - `npx playwright test`: PASS — 9/9 Edge tests after the redesign.
+- Transition-specific browser assertions wait for both the active text panel and
+  active evidence plate to reach opacity 1 before capture.
 - Globe click stress check: PASS — 3/3 consecutive runs.
 - Console-error assertion: PASS.
 - Desktop and 390×844 horizontal-overflow assertions: PASS.

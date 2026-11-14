@@ -285,3 +285,7 @@ now pairs every chapter with its corresponding plate in reading order.
   Evidence includes `phase04-scene-1` through `phase04-scene-4`,
   `phase04-documentary-390x844.png`, `phase04-sensor-390x844.png`, and
   `phase04-region-390x844.png`.
+- After feedback on transition effort, replaced independent text/plate timings
+  with one synchronized 620 ms arrival and a section-level nearest-scene snap.
+  Explicit navigation now lands on exact scene coordinates. Browser assertions
+  verify that both the text and evidence plate are fully visible before capture.

@@ -120,7 +120,7 @@ test("documentary scroll does not overwrite a manual month", async ({ page }) =>
     "true",
   );
 
-  await page.locator('[data-documentary-marker="2"]').scrollIntoViewIfNeeded();
+  await page.getByRole("button", { name: /Go to scene 3:/ }).click();
   await expect(documentary).toHaveAttribute("data-active-scene", "2");
   await expect(documentary).toHaveAttribute("data-period", "2020-01");
 });
@@ -145,13 +145,17 @@ test("captures four distinct documentary states and the compact layout", async (
   await expect(documentary).toHaveAttribute("data-enhanced", "true");
 
   for (const scene of [0, 1, 2, 3]) {
-    await page
-      .locator(`[data-documentary-marker="${scene}"]`)
-      .scrollIntoViewIfNeeded();
+    await page.getByRole("button", { name: new RegExp(`Go to scene ${scene + 1}:`) }).click();
     await expect(documentary).toHaveAttribute(
       "data-active-scene",
       String(scene),
     );
+    await expect(
+      page.locator(`[data-documentary-panel="${scene}"]`),
+    ).toHaveCSS("opacity", "1");
+    await expect(
+      page.locator(".documentary-visual > .story-plate").nth(scene),
+    ).toHaveCSS("opacity", "1");
     await page.screenshot({
       path: `../../artifacts/screenshots/phase04-scene-${scene + 1}-1440x900.png`,
     });

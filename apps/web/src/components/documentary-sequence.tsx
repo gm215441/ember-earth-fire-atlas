@@ -133,21 +133,43 @@ export function DocumentarySequence() {
       root.dataset.enhanced = "true";
       const panels = gsap.utils.toArray<HTMLElement>(".documentary-panel");
       const plates = gsap.utils.toArray<HTMLElement>(".documentary-visual > .story-plate");
-      const markers = gsap.utils.toArray<HTMLElement>(".documentary-marker");
       gsap.set(panels, { autoAlpha: 0, y: 28 });
       gsap.set(plates, { autoAlpha: 0, scale: 0.975, y: 16 });
       gsap.set([panels[0], plates[0]], { autoAlpha: 1, scale: 1, y: 0 });
+      let visibleIndex = 0;
       const activate = (index: number) => {
+        if (index === visibleIndex) return;
+        const previousIndex = visibleIndex;
+        visibleIndex = index;
         setActiveScene(index);
         if (!periodLocked) setPeriodIndex(index === 1 ? 0 : 1);
-        gsap.to(panels, { autoAlpha: 0, y: -16, duration: 0.24, overwrite: true });
-        gsap.to(plates, { autoAlpha: 0, scale: 1.018, y: -10, duration: 0.3, overwrite: true });
-        gsap.to(panels[index], { autoAlpha: 1, y: 0, duration: 0.56, ease: "power3.out", overwrite: true });
-        gsap.to(plates[index], { autoAlpha: 1, scale: 1, y: 0, duration: 0.76, delay: 0.08, ease: "power3.out", overwrite: true });
+        const outgoing = [panels[previousIndex], plates[previousIndex]];
+        const incoming = [panels[index], plates[index]];
+        gsap.killTweensOf([...panels, ...plates]);
+        gsap.set(panels[index], { autoAlpha: 0, y: 22 });
+        gsap.set(plates[index], { autoAlpha: 0, scale: 0.985, y: 18 });
+        gsap.timeline()
+          .to(outgoing, { autoAlpha: 0, duration: 0.28, ease: "power2.inOut" }, 0)
+          .to(panels[previousIndex], { y: -12, duration: 0.32, ease: "power2.inOut" }, 0)
+          .to(plates[previousIndex], { y: -10, scale: 1.012, duration: 0.32, ease: "power2.inOut" }, 0)
+          .to(incoming, { autoAlpha: 1, duration: 0.62, ease: "power3.out" }, 0.08)
+          .to(panels[index], { y: 0, duration: 0.62, ease: "power3.out" }, 0.08)
+          .to(plates[index], { y: 0, scale: 1, duration: 0.62, ease: "power3.out" }, 0.08);
       };
-      const triggers = markers.map((marker, index) => ScrollTrigger.create({ trigger: marker, start: "top center", end: "bottom center", onEnter: () => activate(index), onEnterBack: () => activate(index) }));
+      const storyTrigger = ScrollTrigger.create({
+        trigger: root,
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: (self) => activate(Math.min(scenes.length - 1, Math.round(self.progress * (scenes.length - 1)))),
+        snap: {
+          snapTo: (progress) => Math.round(progress * (scenes.length - 1)) / (scenes.length - 1),
+          duration: { min: 0.22, max: 0.52 },
+          delay: 0.06,
+          ease: "power2.inOut",
+        },
+      });
       ScrollTrigger.refresh();
-      return () => { triggers.forEach((trigger) => trigger.kill()); root.removeAttribute("data-enhanced"); };
+      return () => { storyTrigger.kill(); root.removeAttribute("data-enhanced"); };
     });
     return () => media.revert();
   }, { scope: rootRef, dependencies: [motionPaused, periodLocked], revertOnUpdate: true });
@@ -156,9 +178,17 @@ export function DocumentarySequence() {
   const goToScene = (index: number) => {
     const root = rootRef.current;
     const enhanced = root?.dataset.enhanced === "true";
-    const target = root?.querySelector<HTMLElement>(enhanced ? `[data-documentary-marker="${index}"]` : `[data-documentary-panel="${index}"]`);
+    if (root && enhanced) {
+      const rootTop = root.getBoundingClientRect().top + window.scrollY;
+      const scrollRange = root.offsetHeight - window.innerHeight;
+      window.scrollTo({
+        top: rootTop + (scrollRange * index) / (scenes.length - 1),
+        behavior: "auto",
+      });
+      return;
+    }
     setActiveScene(index);
-    target?.scrollIntoView({ behavior: motionPaused ? "auto" : "smooth", block: enhanced ? "center" : "start" });
+    root?.querySelector<HTMLElement>(`[data-documentary-panel="${index}"]`)?.scrollIntoView({ behavior: motionPaused ? "auto" : "smooth", block: "start" });
   };
 
   return (
