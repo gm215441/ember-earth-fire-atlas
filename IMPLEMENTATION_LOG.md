@@ -261,3 +261,27 @@ The story captions distinguish a satellite-detected pixel from a unique fire,
 label the global series raw/not harmonized, and cite NASA ARSET for platform
 history and spatial-resolution context. No cross-sensor trend or causal fire
 type is inferred from the aggregate snapshots.
+
+### Post-checkpoint scene redesign
+
+The user rejected the original documentary scene implementation. Review showed
+that the criticism was valid: all four chapters reused one globe and changed
+mostly copy, scale, and framing; compact layout also placed an oversized visual
+before the chapter text. The sequence was rebuilt with four distinct plates:
+archive timeline, simultaneous seasonal hemispheres, native sensor-confidence
+vocabularies, and a regional coordinate field using real 2025 FIRMS rows. Mobile
+now pairs every chapter with its corresponding plate in reading order.
+
+- Added `public/data/story-regions.json`, a 38 KB presentation subset derived
+  from the deterministic regional extraction. It contains real source rows and
+  keeps full regional counts separate from the display subset.
+- Corrected a server/client float-serialization mismatch by fixing all generated
+  CSS coordinates and alpha values to deterministic precision.
+- `npm run check`: PASS — lint, strict typecheck, 4 unit tests, production build.
+- Final complete browser rerun: PASS — 9/9 in 1.4 minutes. An earlier run found
+  one obsolete hidden-button assertion; the corrected assertion verifies retained
+  documentary state directly.
+- Inspected all four 1440×900 chapters and three 390×844 mobile checkpoints.
+  Evidence includes `phase04-scene-1` through `phase04-scene-4`,
+  `phase04-documentary-390x844.png`, `phase04-sensor-390x844.png`, and
+  `phase04-region-390x844.png`.

@@ -122,10 +122,7 @@ test("documentary scroll does not overwrite a manual month", async ({ page }) =>
 
   await page.locator('[data-documentary-marker="2"]').scrollIntoViewIfNeeded();
   await expect(documentary).toHaveAttribute("data-active-scene", "2");
-  await expect(page.getByRole("button", { name: "2020-01" })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  await expect(documentary).toHaveAttribute("data-period", "2020-01");
 });
 
 test("documentary motion can be paused without scroll lock", async ({ page }) => {
@@ -141,13 +138,13 @@ test("documentary motion can be paused without scroll lock", async ({ page }) =>
   ).not.toBe("hidden");
 });
 
-test("captures three documentary states and the compact layout", async ({ page }) => {
+test("captures four distinct documentary states and the compact layout", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.reload();
   const documentary = page.locator(".documentary");
   await expect(documentary).toHaveAttribute("data-enhanced", "true");
 
-  for (const scene of [0, 1, 3]) {
+  for (const scene of [0, 1, 2, 3]) {
     await page
       .locator(`[data-documentary-marker="${scene}"]`)
       .scrollIntoViewIfNeeded();
@@ -167,5 +164,15 @@ test("captures three documentary states and the compact layout", async ({ page }
   );
   await page.screenshot({
     path: "../../artifacts/screenshots/phase04-documentary-390x844.png",
+  });
+
+  await page.locator('[data-documentary-panel="2"]').scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: "../../artifacts/screenshots/phase04-sensor-390x844.png",
+  });
+
+  await page.locator('[data-documentary-panel="3"]').scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: "../../artifacts/screenshots/phase04-region-390x844.png",
   });
 });
