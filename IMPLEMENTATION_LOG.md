@@ -351,3 +351,66 @@ unique fires, wildfire cause, burned area, confirmed no-fire, or observation
 coverage. Mixed sensor rows can be filtered but are not labeled harmonized or
 directly comparable. Detailed architecture, data cap, and limitations are in
 `docs/REGIONAL_EXPLORER.md`.
+
+## 2026-11-14 — Phase 06: responsible sensor-aware histories
+
+### What changed
+
+- Added a resumable DuckDB Spatial ETL that reads one exact yearly raw
+  `detections.parquet` object at a time for 2000–2025, clips the disclosed
+  Punjab and California bounding boxes, preserves sensor/platform/quality/
+  day-night provenance, and detects duplicates using the complete stated row
+  identity rather than a probabilistic hash.
+- Exported raw daily and monthly sensor-separated series. MODIS Terra+Aqua SP
+  and VIIRS Suomi-NPP SP have separate calendar-month reference profiles;
+  NOAA-20 and NOAA-21 remain independent. Reference index 100 means only that
+  stream's own seasonal median and is never presented as harmonization.
+- Rebuilt `/compare` with independent raw timelines and scales, year/region/
+  day-night controls, a fleet timeline, optional within-sensor references,
+  and explicit no-equivalence language. Missing months remain unavailable and
+  occupy their true elapsed time in the charts.
+- Rebuilt `/method`, added `docs/METHOD.md` and `docs/LIMITATIONS.md`, and added
+  typed science-contract tests for UTC, target-year exclusion, positive-only
+  coverage limits, confidence semantics, and SP/NRT source quality.
+
+### Real-data evidence
+
+- Exact years processed: 26/26 (2000–2025); unavailable years: 0.
+- Source rows: 4,904,615; daily groups: 68,040; monthly rows: 3,331.
+- Exact duplicate identities removed: 0. This is a measured result, not an
+  assumption that nearby or repeated detections are the same fire.
+- Seasonal profiles: 48 rows. Each region has 12 MODIS profiles with 22
+  available years (2003–2024) and 12 VIIRS SNPP profiles with 12 available
+  years (2013–2024); target year 2025 is excluded.
+- Outputs: `regional-daily-series.json` 20,529,576 bytes and
+  `regional-monthly-series.json` 812,831 bytes. Machine record:
+  `artifacts/data/phase06-series-build.json`.
+
+### Verification
+
+- `npm run test`: PASS — 12/12 unit tests. This includes explicit UTC,
+  positive-only no-fire gating, raw/non-harmonized labels, baseline exclusion,
+  native confidence semantics, and SP/NRT retention.
+- `npm run typecheck`: PASS. `npm run lint`: PASS.
+- `npx playwright test e2e/compare-method.spec.ts`: PASS — 3/3 against the
+  complete historical artifact. The tests exercise raw separation, day/night,
+  reference mode, region switching, fleet history, provenance, and desktop/
+  mobile overflow.
+- `npx playwright test`: PASS — 15/15 in 2.6 minutes, including globe,
+  documentary transitions, regional explorer, compare, and method regressions.
+- `npm run build`: PASS — Next.js 16.4.6 production Webpack build generated
+  `/`, `/compare`, `/explore`, and `/method`. The local preview was restarted at
+  `http://localhost:3000` after the build.
+- Inspected evidence: `phase06-compare-1440x900.png`,
+  `phase06-reference-1440x900.png`, `phase06-fleet-1440x900.png`,
+  `phase06-compare-390x844.png`, `phase06-series-390x844.png`, and
+  `phase06-method-390x844.png`. The first mobile pass found a 970 px method
+  overflow caused by the long reproducible command; the grid min-width and
+  code scroller were fixed and the 390 px assertion now passes.
+
+### Scientific status
+
+These are positive thermal-anomaly pixel detections, not unique fires, burned
+area, observation coverage, cause, severity, or a combined cross-sensor truth.
+No calibration has been accepted. The Portolan catalog remains an independent
+mirror of NASA FIRMS, and NRT rows remain provisional.

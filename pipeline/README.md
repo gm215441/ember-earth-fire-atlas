@@ -9,6 +9,7 @@ pipeline/.venv/Scripts/python.exe pipeline/inspect_source.py
 pipeline/.venv/Scripts/python.exe pipeline/build_global_preview.py
 pipeline/.venv/Scripts/python.exe pipeline/validate_preview.py
 pipeline/.venv/Scripts/python.exe pipeline/build_regional_snapshot.py
+pipeline/.venv/Scripts/python.exe pipeline/build_regional_series.py --start-year 2000 --end-year 2025
 ```
 
 The scripts query exact HTTPS filenames. They never use `year=*/*.parquet`, never
@@ -20,3 +21,11 @@ object. It stores complete daily cross-tab counts for the two rectangular AOIs
 and a deterministic, capped display sample of real rows for interactive maps.
 The cap is 200 rows per source sensor and UTC month; full daily counts are not
 sampled.
+
+`build_regional_series.py` scans the same exact yearly raw objects for the
+Punjab and California AOIs. It writes sensor/platform/quality/day-night daily
+and monthly series, reports exact duplicate identities, and calculates separate
+within-stream seasonal reference indices for MODIS and VIIRS SNPP. The target
+year is excluded from both baselines. Per-year resumable cache files are written
+to `pipeline/cache/regional-series/` and ignored by Git; use `--refresh` only
+when intentionally rebuilding a cached source year.

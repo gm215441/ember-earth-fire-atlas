@@ -135,7 +135,7 @@ export function RegionalExplorer({
       <header className="explorer-header">
         <Link className="brand-lockup" href="/" aria-label="EMBER home"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Regional evidence</small></span></Link>
         <div><span>2025 source snapshot</span><strong>{region.label}</strong></div>
-        <nav aria-label="Explorer navigation"><Link href="/">Globe</Link><Link href="/method">Method</Link></nav>
+        <nav aria-label="Explorer navigation"><Link href="/">Globe</Link><Link href="/compare">Compare</Link><Link href="/method">Method</Link></nav>
       </header>
 
       <div className="explorer-layout">
