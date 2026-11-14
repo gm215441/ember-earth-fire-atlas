@@ -19,6 +19,10 @@ def year_r5(year: int) -> str:
     return f"{MIRROR_ROOT}/year={year}/aggregate-r5.parquet"
 
 
+def year_detections(year: int) -> str:
+    return f"{MIRROR_ROOT}/year={year}/detections.parquet"
+
+
 def connect() -> duckdb.DuckDBPyConnection:
     connection = duckdb.connect()
     connection.execute("INSTALL spatial")

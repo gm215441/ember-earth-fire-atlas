@@ -289,3 +289,65 @@ now pairs every chapter with its corresponding plate in reading order.
   with one synchronized 620 ms arrival and a section-level nearest-scene snap.
   Explicit navigation now lands on exact scene coordinates. Browser assertions
   verify that both the text and evidence plate are fully visible before capture.
+
+## 2026-11-14 — Phase 05: real regional explorer
+
+### What changed
+
+- Replaced the `/explore` foundation shell with a map-first MapLibre GL 6.18.0
+  and deck.gl 9.4.1 explorer. OpenFreeMap Liberty supplies the attributed
+  basemap; density is aggregated below zoom 8 and real source rows become
+  drillable points at zoom 8 and above.
+- Added real 2025 raw detections for verified rectangular Punjab and California
+  extents. The pipeline reads only the exact
+  `year=2025/detections.parquet` object. Complete daily source counts remain
+  separate from the deterministic 200-row-per-sensor-month display cap.
+- Implemented UTC start/end, sensor family, satellite platform, SP/NRT, and
+  day/night filters. The controls change both full source counts and rendered
+  rows. Region, filters, and map camera are retained in the URL.
+- Added native-confidence, FRP MW, source quality, UTC acquisition, platform,
+  day/night, and coordinates to inspection. MODIS numeric confidence and VIIRS
+  categorical confidence remain separate. NRT is marked provisional.
+- Added keyboard row inspection, attributed source/provenance drawer, working
+  filtered CSV export, exact raw Parquet source link, loading/error states, and
+  an honest empty state that does not interpret missing detections as no-fire.
+
+### Real-data evidence
+
+- Source size: 1,031,532,301 bytes; ETag
+  `"2db6c91c5df1a801cd7e419d8d2e5d52-16"`; modified 2026-09-10.
+- Punjab: 239,359 full source rows, 9,180 displayed rows, 2,704 daily cross-tabs.
+- California: 141,384 full source rows, 9,566 displayed rows, 2,892 daily
+  cross-tabs.
+- Generated client artifact: 5,831,328 bytes. Build record:
+  `artifacts/data/phase05-regional-build.json`.
+- AOI bounding boxes were verified from OpenStreetMap Nominatim relations
+  357988 (Punjab) and 165475 (California) and are explicitly labeled bounding
+  boxes, not polygon clips.
+
+### Verification
+
+- `npm run test`: PASS — 8/8 unit tests across three files, including regional
+  provenance, AOI containment, exact daily totals, native confidence semantics,
+  and SP/NRT retention.
+- `npm run typecheck`: PASS. `npm run lint`: PASS.
+- `npm run build`: PASS after stopping the live dev server that held a Windows
+  `.next` directory lock. The optimized Webpack build completed all routes.
+- `npm audit --omit=dev`: PASS — zero production vulnerabilities. The first
+  sandboxed attempt had no DNS; the approved network retry completed.
+- `npx playwright test`: PASS — 12/12 in 1.1 minutes, covering the globe,
+  synchronized documentary, real regional filters, attributed map, exact source
+  link, CSV download, URL camera state, empty state, and desktop/mobile overflow.
+- Inspected evidence:
+  `phase05-explore-punjab-1440x900.png`,
+  `phase05-explore-california-1440x900.png`,
+  `phase05-explore-controls-390x844.png`, and
+  `phase05-explore-map-390x844.png`.
+
+### Scientific status
+
+The interface displays positive thermal-anomaly detections. It does not infer
+unique fires, wildfire cause, burned area, confirmed no-fire, or observation
+coverage. Mixed sensor rows can be filtered but are not labeled harmonized or
+directly comparable. Detailed architecture, data cap, and limitations are in
+`docs/REGIONAL_EXPLORER.md`.
