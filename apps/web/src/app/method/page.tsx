@@ -10,7 +10,7 @@ const definitions = [
 export default function MethodPage() {
   return (
     <main className="method-shell">
-      <header className="method-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Methods & limits</small></span></Link><nav><Link href="/explore">Explore</Link><Link href="/compare">Compare</Link></nav></header>
+      <header className="method-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Methods & limits</small></span></Link><nav><Link href="/explore">Explore</Link><Link href="/calendar">Calendar</Link><Link href="/compare">Compare</Link></nav></header>
       <section className="method-hero"><p className="eyebrow">Scientific contract / version 1</p><h1>Read the signal.<br />Keep the limits.</h1><p>EMBER makes historical thermal-anomaly detections explorable without turning them into claims the source cannot support.</p></section>
 
       <nav className="method-index" aria-label="Method sections"><a href="#definitions">Definitions</a><a href="#pipeline">Pipeline</a><a href="#sensor-differences">Sensors</a><a href="#coverage">Coverage</a><a href="#validation">Validation</a><a href="#sources">Sources</a></nav>

@@ -10,6 +10,7 @@ pipeline/.venv/Scripts/python.exe pipeline/build_global_preview.py
 pipeline/.venv/Scripts/python.exe pipeline/validate_preview.py
 pipeline/.venv/Scripts/python.exe pipeline/build_regional_snapshot.py
 pipeline/.venv/Scripts/python.exe pipeline/build_regional_series.py --start-year 2000 --end-year 2025
+pipeline/.venv/Scripts/python.exe pipeline/build_calendar_snapshot.py
 ```
 
 The scripts query exact HTTPS filenames. They never use `year=*/*.parquet`, never
@@ -29,3 +30,8 @@ within-stream seasonal reference indices for MODIS and VIIRS SNPP. The target
 year is excluded from both baselines. Per-year resumable cache files are written
 to `pipeline/cache/regional-series/` and ignored by Git; use `--refresh` only
 when intentionally rebuilding a cached source year.
+
+`build_calendar_snapshot.py` compacts the completed daily series into SP-only
+MODIS and VIIRS SNPP UTC-day rows for `/calendar`. It never creates rows for
+missing days. Calendar reference statistics are computed from stable prior
+years only and are covered by deterministic TypeScript unit tests.

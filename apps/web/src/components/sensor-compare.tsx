@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import type { CalendarStream } from "@/lib/calendar-data";
 import type { MonthlySeriesDataset, MonthlySeriesRow, ReferenceSeriesRow } from "@/lib/series-data";
 
 type RegionId = "punjab" | "california";
@@ -29,7 +30,7 @@ function referencePoints(rows: ReferenceSeriesRow[], region: RegionId, stream: "
     .map((row) => ({ month: row.month, value: row.referenceIndex! }));
 }
 
-function SeriesChart({ points, label, metric, color }: { points: ChartPoint[]; label: string; metric: string; color: string }) {
+function SeriesChart({ points, label, metric, color, focused }: { points: ChartPoint[]; label: string; metric: string; color: string; focused?: boolean }) {
   const width = 760;
   const height = 250;
   const pad = { top: 24, right: 22, bottom: 34, left: 48 };
@@ -51,7 +52,7 @@ function SeriesChart({ points, label, metric, color }: { points: ChartPoint[]; l
   const median = points.length ? [...points].sort((a, b) => a.value - b.value)[Math.floor(points.length / 2)].value : 0;
 
   return (
-    <section className="series-card">
+    <section className={`series-card${focused ? " is-focused" : ""}`}>
       <header><div><span>{metric}</span><h2>{label}</h2></div><div><span>Peak month</span><strong>{compact.format(peak)}</strong><small>Median {compact.format(median)}</small></div></header>
       {points.length ? <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${label} ${metric} timeline`}>
         {[0, 0.25, 0.5, 0.75, 1].map((fraction) => {
@@ -67,28 +68,33 @@ function SeriesChart({ points, label, metric, color }: { points: ChartPoint[]; l
   );
 }
 
-export function SensorCompare() {
+export function SensorCompare({ initialRegion, initialStartYear, initialEndYear, focus }: { initialRegion: RegionId; initialStartYear: number; initialEndYear: number; focus: CalendarStream | null }) {
   const [data, setData] = useState<MonthlySeriesDataset | null>(null);
   const [error, setError] = useState(false);
-  const [region, setRegion] = useState<RegionId>("punjab");
+  const [region, setRegion] = useState<RegionId>(initialRegion);
   const [day, setDay] = useState<DayFilter>("all");
   const [view, setView] = useState<ViewKind>("raw");
-  const [startYear, setStartYear] = useState(2000);
-  const [endYear, setEndYear] = useState(2025);
+  const [startYear, setStartYear] = useState(initialStartYear);
+  const [endYear, setEndYear] = useState(initialEndYear);
 
   useEffect(() => {
     const controller = new AbortController();
     fetch("/data/regional-monthly-series.json", { signal: controller.signal })
       .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<MonthlySeriesDataset>; })
-      .then((dataset) => { setData(dataset); setStartYear(dataset.period.startYear); setEndYear(dataset.period.endYear); })
+      .then((dataset) => {
+        setData(dataset);
+        setStartYear(Math.min(dataset.period.endYear, Math.max(dataset.period.startYear, initialStartYear)));
+        setEndYear(Math.min(dataset.period.endYear, Math.max(dataset.period.startYear, initialEndYear)));
+      })
       .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setError(true); });
     return () => controller.abort();
-  }, []);
+  }, [initialEndYear, initialStartYear]);
 
   useEffect(() => {
     const params = new URLSearchParams({ region, day, view, start: String(startYear), end: String(endYear) });
+    if (focus) params.set("focus", focus);
     window.history.replaceState({}, "", `/compare?${params}`);
-  }, [day, endYear, region, startYear, view]);
+  }, [day, endYear, focus, region, startYear, view]);
 
   const modis = useMemo(() => data ? (view === "raw" ? aggregateRaw(data.monthly, region, "MODIS", day, startYear, endYear) : referencePoints(data.referenceSeries, region, "MODIS", startYear, endYear)) : [], [data, day, endYear, region, startYear, view]);
   const viirs = useMemo(() => data ? (view === "raw" ? aggregateRaw(data.monthly, region, "VIIRS_SNPP", day, startYear, endYear) : referencePoints(data.referenceSeries, region, "VIIRS_SNPP", startYear, endYear)) : [], [data, day, endYear, region, startYear, view]);
@@ -110,7 +116,7 @@ export function SensorCompare() {
   const years = Array.from({ length: data.period.endYear - data.period.startYear + 1 }, (_, index) => data.period.startYear + index);
   return (
     <main className="compare-shell">
-      <header className="compare-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Sensor diagnostics</small></span></Link><nav><Link href="/explore">Explore</Link><Link href="/method">Method</Link></nav></header>
+      <header className="compare-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Sensor diagnostics</small></span></Link><nav><Link href="/explore">Explore</Link><Link href={`/calendar?region=${region}&year=${endYear}&sensor=MODIS&date=${endYear}-04-29`}>Calendar</Link><Link href="/method">Method</Link></nav></header>
       <section className="compare-intro"><p className="eyebrow">Instrument record / {data.regions[region].label}</p><h1>Two histories.<br />No false equivalence.</h1><p>MODIS and VIIRS SNPP appear in separate panels with independent vertical scales. Raw counts measure detected pixels from different instruments—not one interchangeable fire record.</p></section>
       <section className="compare-controls" aria-label="Comparison controls">
         <label><span>Region</span><select value={region} onChange={(event) => setRegion(event.target.value as RegionId)}><option value="punjab">Punjab, Pakistan</option><option value="california">California, USA</option></select></label>
@@ -122,8 +128,8 @@ export function SensorCompare() {
 
       <div className="comparison-warning"><strong>{view === "raw" ? "Raw counts are not directly comparable" : "Within-sensor indices are not harmonized"}</strong><span>{view === "raw" ? "Each panel uses its own scale and keeps SP quality." : "100 is that sensor’s own calendar-month baseline median. Target year 2025 is excluded."}</span></div>
       <section className="series-stack">
-        <SeriesChart points={modis} label="MODIS · Terra + Aqua" metric={view === "raw" ? "raw_sensor_count · SP" : "MODIS seasonal reference index"} color="#f4a36e" />
-        <SeriesChart points={viirs} label="VIIRS · Suomi-NPP" metric={view === "raw" ? "raw_sensor_count · SP" : "VIIRS SNPP seasonal reference index"} color="#74a7b3" />
+        <SeriesChart points={modis} label="MODIS · Terra + Aqua" metric={view === "raw" ? "raw_sensor_count · SP" : "MODIS seasonal reference index"} color="#f4a36e" focused={focus === "MODIS"} />
+        <SeriesChart points={viirs} label="VIIRS · Suomi-NPP" metric={view === "raw" ? "raw_sensor_count · SP" : "VIIRS SNPP seasonal reference index"} color="#74a7b3" focused={focus === "VIIRS_SNPP"} />
       </section>
 
       <section className="fleet-section"><div><p className="eyebrow">The fleet changes</p><h2>New platforms add new streams.</h2><p>NOAA-20 and NOAA-21 remain independent below. They are not appended to the Suomi-NPP reference series.</p></div><div className="fleet-timeline">{data.fleet.map((row) => {

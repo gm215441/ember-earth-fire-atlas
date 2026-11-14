@@ -1,0 +1,16 @@
+{
+  "command": "python pipeline/build_calendar_snapshot.py",
+  "source": "apps\\web\\public\\data\\regional-daily-series.json",
+  "output": "apps\\web\\public\\data\\regional-calendar-series.json",
+  "dailyRows": 26290,
+  "outputBytes": 2845715,
+  "streams": [
+    "MODIS",
+    "VIIRS_SNPP"
+  ],
+  "regions": [
+    "california",
+    "punjab"
+  ],
+  "completedAtUtc": "2026-11-14T11:11:21.337509+00:00"
+}

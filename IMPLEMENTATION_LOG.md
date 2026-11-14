@@ -414,3 +414,67 @@ These are positive thermal-anomaly pixel detections, not unique fires, burned
 area, observation coverage, cause, severity, or a combined cross-sensor truth.
 No calibration has been accepted. The Portolan catalog remains an independent
 mirror of NASA FIRMS, and NRT rows remain provisional.
+
+## 2026-11-14 — Phase 07: burning calendar and prior-year context
+
+### What changed
+
+- Added `/calendar` with synchronized region, sensor stream, UTC year, and UTC
+  date query state. The route includes a 12-month activity ribbon, daily pulse
+  chart, selectable calendar grid, computed reading, coordinate view, and
+  direct Explore/Compare handoffs.
+- Added `build_calendar_snapshot.py`, which compacts the verified Phase 06
+  series into SP-only MODIS and VIIRS SNPP positive-day rows without filling
+  missing days. The UI does not download the 20.5 MB analytical daily artifact.
+- Implemented a leakage-safe reference: same-month positive-detection days from
+  stable prior years only, excluding the selected year and all future years.
+  The UI reports quartiles, median, empirical percentile, sample days/years,
+  and `(selected - median) / max(IQR, 1)`. Fewer than 20 days or three years
+  produces “not enough comparable history.”
+- The 2025 map uses real capped coordinates and keeps the full daily count
+  separate. Older years show a coordinate-layer-unavailable state instead of
+  invented locations. Date selection changes both the statistics and point
+  layer with a restrained transition.
+- Added calendar navigation across the globe, explorer, compare, and method
+  routes. Compare now accepts region/year/sensor focus from calendar state.
+
+### Real-data evidence
+
+- Calendar artifact: 26,290 positive-day rows, 2,845,715 bytes, two regions,
+  two stable streams. Build record: `artifacts/data/phase07-calendar-build.json`.
+- Selected visual-evidence slice: Punjab, MODIS SP, 2025-04-29 UTC. The daily
+  full count is 195 detected pixels and the coordinate view contains 37 real
+  display-sample rows. The score uses 629 prior positive days across 22 years;
+  it is labeled context, not a forecast or emergency rating.
+- Source remains NASA LANCE FIRMS via the independent Portolan mirror. The map
+  coordinates come from the verified `regional-2025.json` display artifact.
+
+### Verification
+
+- `npm run test`: PASS — 16/16. Four new statistical tests prove future and
+  selected-year exclusion, missing-as-unavailable behavior, insufficient
+  history, and prior-only peak-month derivation.
+- `npm run typecheck`: PASS. `npm run lint`: PASS.
+- `npx playwright test e2e/calendar.spec.ts`: PASS — 3/3. Date selection changes
+  the count, URL, map date, and point count; historical coordinates refuse
+  fabrication; Explore/Compare handoff and desktop/mobile overflow pass.
+- `npx playwright test`: PASS — 18/18 in 2.7 minutes, including all prior globe,
+  documentary, explorer, compare, and method regressions.
+- `npm run build`: PASS. The first attempt hit a Windows EPERM lock in generated
+  `.next`; after deleting only that verified build directory, the sandboxed
+  retry could not resolve the existing Google Fonts. The approved network
+  retry completed all eight routes successfully.
+- Inspected evidence: `phase07-calendar-1440x900.png`,
+  `phase07-days-1440x900.png`, `phase07-map-1440x900.png`,
+  `phase07-calendar-390x844.png`, `phase07-days-390x844.png`, and
+  `phase07-map-390x844.png`. The first pass exposed the Next dev “1 Insight”
+  overlay in local pixels; the dev-only host is now hidden and final captures
+  show only application UI.
+
+### Scientific status
+
+The calendar distribution is conditioned on positive-detection days because no
+compatible observation mask is present. Its percentile is not all-day fire
+probability, forecast, risk, emergency severity, climate attribution, or
+cross-sensor truth. Missing days and unavailable historical coordinates remain
+explicit.

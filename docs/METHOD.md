@@ -79,6 +79,28 @@ Months with no positive-detection row are unavailable. The pipeline does not
 fill them with zero or interpolate across them. The chart path breaks across
 missing calendar months and preserves their elapsed horizontal time.
 
+## Daily calendar reference
+
+The burning calendar uses SP-only MODIS Terra+Aqua or VIIRS Suomi-NPP daily
+rows. For a selected positive-detection UTC date, its comparison pool contains
+positive-detection days from the same calendar month and stable sensor stream
+in prior years only: MODIS begins at 2003 and VIIRS SNPP at 2013. The selected
+year and every future year are excluded. At least 20 prior positive days across
+at least three prior years are required; otherwise the interface says “not
+enough comparable history.”
+
+The displayed robust score is `(selected count - prior median) / prior IQR`,
+with a denominator floor of one detected pixel. The interface also reports the
+prior 25th/50th/75th percentiles, empirical percentile, sample days, and sample
+years. This is within-sensor seasonal context, not a forecast, alert, causal
+claim, or harmonized cross-sensor result. A missing date has no score and is
+never filled with zero.
+
+The coordinate map uses the real, deterministic capped 2025 display rows from
+the regional explorer and keeps the full daily count beside them. Earlier
+years retain verified daily totals but no point layer; the map states that the
+historical coordinate layer is unavailable instead of inventing locations.
+
 ## Time
 
 Source `acq_datetime` and `acq_date` are interpreted as UTC. Internal dates and

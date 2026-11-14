@@ -81,6 +81,7 @@ export function HeroExperience() {
           </Link>
           <nav aria-label="Primary navigation">
             <Link href="/explore">Explore</Link>
+            <Link href="/calendar">Calendar</Link>
             <Link href="/compare">Compare</Link>
             <Link href="/method">Methodology</Link>
           </nav>

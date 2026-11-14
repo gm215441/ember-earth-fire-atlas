@@ -38,6 +38,20 @@ clips. Border-adjacent detections outside the administrative polygon can be
 included inside those rectangles. All acquisition dates are UTC; users near a
 date boundary may expect a different local civil date.
 
+## Calendar reference selection
+
+The calendar score compares a selected positive-detection day with other
+positive-detection days in the same calendar month from prior stable-stream
+years. It excludes missing days because the source has no compatible
+observation mask. Consequently the distribution describes detected days, not
+all calendar days or fire-free probability, and its percentile must not be
+read as risk, forecast, emergency severity, or climate attribution. The score
+is withheld when there are fewer than 20 comparable days or three prior years.
+
+Only the 2025 regional display artifact contains point coordinates for the
+calendar map. It is a deterministic capped subset; full daily counts remain
+separate. Historical years show totals without a point layer.
+
 ## Duplicate handling
 
 The pipeline reports source rows and exact duplicate identities separately. Its
