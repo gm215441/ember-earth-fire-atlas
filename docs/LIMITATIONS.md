@@ -31,6 +31,13 @@ pixels independently of physical fire change. Separate panels and independent
 vertical scales are intentional. The within-sensor seasonal indices are not a
 combined trend and not scientific harmonization.
 
+The executed overlap experiment does not change that status. It predicts a
+MODIS-reference count from VIIRS SNPP rather than estimating physical fire
+truth, uses only Punjab and California, and worsened the held-out 2020 year.
+Although overall error improved against a global ratio baseline, the
+geographic-breadth gate failed. No validated combined index or confidence
+interval is published.
+
 ## AOI and calendar assumptions
 
 Punjab and California use verified administrative bounding boxes, not polygon

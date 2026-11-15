@@ -54,6 +54,7 @@ test("map, row inspection, provenance, and filtered CSV remain functional", asyn
 });
 
 test("captures desktop and mobile regional explorer states", async ({ page }) => {
+  test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(page.locator(".regional-map")).toHaveAttribute("data-map-loaded", "true", { timeout: 25_000 });
   expect(await page.evaluate(() => document.body.scrollWidth)).toBeLessThanOrEqual(1440);

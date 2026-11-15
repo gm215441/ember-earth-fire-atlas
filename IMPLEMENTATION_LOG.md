@@ -478,3 +478,64 @@ compatible observation mask is present. Its percentile is not all-day fire
 probability, forecast, risk, emergency severity, climate attribution, or
 cross-sensor truth. Missing days and unavailable historical coordinates remain
 explicit.
+
+## 2026-11-15 — Phase 08: held-out calibration experiment
+
+### What changed
+
+- Added the reproducible `ember-overlap-ratio-v1` experiment. It aligns VIIRS
+  Suomi-NPP SP monthly counts to the MODIS Terra+Aqua SP reference stream for
+  matching positive region-months; MODIS is explicitly not physical fire
+  ground truth.
+- Used a chronological split: 144 training pairs from 2013–2018 and 144
+  held-out pairs from 2019–2024. Compared unadjusted VIIRS, a global median
+  MODIS/VIIRS ratio baseline, and a transparent region/calendar-month ratio fit.
+- Added predeclared release gates for overall improvement, regional stability,
+  year stability, held-out sample size, and geographic breadth. The two-AOI
+  result fails geographic breadth, so its status is `unvalidated` and its
+  release decision is `keep_sensor_series_separate`.
+- Added measured reports and deterministic SVG plots, an experimental-results
+  section on `/compare`, and the executed result on `/method`. No unified-index
+  toggle is exposed. A typed guard requires validated status, a publish
+  decision, and every gate to pass before `validated_harmonized_index` can be
+  presented.
+
+### Actual held-out results
+
+- Global ratio baseline: MAE 330.191, RMSE 642.903, median APE 22.001%, sMAPE
+  27.420%, R² against MODIS 0.9678.
+- Region/season experiment: MAE 238.720, RMSE 518.695, median APE 14.059%,
+  sMAPE 19.959%, R² against MODIS 0.9790.
+- Overall MAE improved 27.702%. Punjab improved 39.207%; California improved
+  only 1.994%. Five of six held-out years improved, but 2020 regressed from
+  MAE 340.560 to 390.160.
+- Passed four gates; failed geographic breadth because only two independent
+  AOIs were available and at least three were required. No confidence interval
+  is claimed.
+
+### Verification and evidence
+
+- `pipeline/.venv/Scripts/python.exe pipeline/run_calibration_experiment.py`:
+  PASS; generated the JSON reports and both SVG plots from actual overlap data.
+- `npm run test`: PASS — 19/19. Three new guard tests prove the executed report
+  and any mislabeled failed-gate report cannot appear validated.
+- `npm run typecheck`: PASS. `npm run lint`: PASS.
+- `npx playwright test e2e/calibration.spec.ts`: PASS — 3/3. The UI shows the
+  failed gate and separate-series decision, method discloses the split, no
+  validated label appears, and desktop/mobile visual captures pass.
+- First full browser run: 20/21; the existing two-desktop/one-mobile explorer
+  screenshot test exceeded its global 30-second timeout while the map remained
+  healthy. Its timeout alone was raised to 60 seconds; the isolated rerun
+  passed in 27.1 seconds. Final full run: PASS — 21/21 in 3.4 minutes.
+- `npm run build`: PASS — all eight Next.js routes completed after the preview
+  process was stopped; the preview was then restored at `http://localhost:3000`.
+- Inspected evidence: `phase08-calibration-1440x900.png`,
+  `phase08-calibration-390x844.png`, `phase08-calibration-plot-390x844.png`,
+  and `phase08-validation-series-1280x720.png`. The validation plot visibly
+  distinguishes MODIS actual, global-ratio baseline, and experimental fit.
+
+### Scientific status
+
+The numerical improvement demonstrates held-out alignment to MODIS in two AOIs,
+not fire truth, general regional validity, burned area, risk, forecast skill, or
+causal explanation. Sensor histories remain the only published comparison.

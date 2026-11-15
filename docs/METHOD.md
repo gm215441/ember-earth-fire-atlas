@@ -110,9 +110,13 @@ civil dates. Unit tests reject acquisition timestamps that omit an explicit `Z`.
 ## Validation status
 
 The separate raw series and within-sensor reference indices are descriptive.
-No cross-sensor calibrated series has been accepted. A later calibration phase
-may run a leakage-safe held-out experiment, but it will remain experimental
-unless it outperforms an explicit baseline on unseen time and region splits.
+No cross-sensor calibrated series has been accepted. Experiment
+`ember-overlap-ratio-v1` trained on 2013–2018 overlap and held out 2019–2024.
+The region/season fit improved overall MAE by 27.702% versus a constant-ratio
+baseline, but only two independent AOIs were available and 2020 regressed. The
+geographic-breadth gate failed, so the application keeps the source histories
+separate and labels the result experimental. Full metrics and failure cases are
+in `docs/CALIBRATION_EXPERIMENT.md`.
 
 ## Primary references
 

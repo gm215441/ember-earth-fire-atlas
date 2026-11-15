@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 import type { CalendarStream } from "@/lib/calendar-data";
+import { canPresentValidatedCalibration, type CalibrationReport } from "@/lib/science/calibration-status";
 import type { MonthlySeriesDataset, MonthlySeriesRow, ReferenceSeriesRow } from "@/lib/series-data";
 
 type RegionId = "punjab" | "california";
@@ -70,6 +72,8 @@ function SeriesChart({ points, label, metric, color, focused }: { points: ChartP
 
 export function SensorCompare({ initialRegion, initialStartYear, initialEndYear, focus }: { initialRegion: RegionId; initialStartYear: number; initialEndYear: number; focus: CalendarStream | null }) {
   const [data, setData] = useState<MonthlySeriesDataset | null>(null);
+  const [calibration, setCalibration] = useState<CalibrationReport | null>(null);
+  const [calibrationError, setCalibrationError] = useState(false);
   const [error, setError] = useState(false);
   const [region, setRegion] = useState<RegionId>(initialRegion);
   const [day, setDay] = useState<DayFilter>("all");
@@ -89,6 +93,15 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
       .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setError(true); });
     return () => controller.abort();
   }, [initialEndYear, initialStartYear]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/data/calibration-experiment.json", { signal: controller.signal })
+      .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; })
+      .then(setCalibration)
+      .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setCalibrationError(true); });
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams({ region, day, view, start: String(startYear), end: String(endYear) });
@@ -139,6 +152,23 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
       })}</div></section>
 
       <section className="independent-streams"><div><p className="eyebrow">Independent VIIRS streams</p><h2>Kept outside the reference line.</h2></div>{independent.map((row) => <article key={row.sensor}><span>{row.sensor}</span><strong>{number.format(row.count)}</strong><small>{row.first}—{row.last} · {[...row.quality].map((quality) => quality.toUpperCase()).join(" / ")}</small></article>)}</section>
+      {calibration ? <section className="calibration-section">
+        <div className="calibration-copy">
+          <p className="eyebrow">Overlap experiment / {canPresentValidatedCalibration(calibration) ? "validated" : "not validated"}</p>
+          <h2>{canPresentValidatedCalibration(calibration) ? "Held-out gates cleared." : "Better fit. Still not a unified truth."}</h2>
+          <p>The experiment predicts the MODIS-reference monthly count from overlapping VIIRS SNPP SP months. It is alignment to another sensor—not fire ground truth.</p>
+          <div className="calibration-metrics">
+            <div><span>Train / hold-out</span><strong>{calibration.split.training.join("–")} / {calibration.split.validation.join("–")}</strong></div>
+            <div><span>Overlap months</span><strong>{calibration.trainingSampleCount} / {calibration.validationSampleCount}</strong></div>
+            <div><span>Baseline MAE</span><strong>{number.format(Math.round(calibration.metrics.overall.constantRatio.mae))}</strong></div>
+            <div><span>Experimental MAE</span><strong>{number.format(Math.round(calibration.metrics.overall.experimental.mae))}</strong></div>
+          </div>
+          <div className="calibration-gates">{calibration.gates.map((gate) => <div key={gate.id} data-passed={gate.passed}><span>{gate.passed ? "Pass" : "Fail"}</span><p>{gate.requirement}</p></div>)}</div>
+          {!canPresentValidatedCalibration(calibration) ? <div className="calibration-decision"><strong>Release decision: keep the sensor series separate.</strong><span>No validated-index toggle is exposed. Geographic breadth failed, and 2020 was a held-out regression year.</span></div> : null}
+          <Link href="/method#validation">Read the experimental method ↗</Link>
+        </div>
+        <div className="calibration-plot"><Image src="/data/calibration-year-mae.svg" alt="Held-out MAE by year for the constant-ratio baseline and experimental regional seasonal fit" width={1280} height={620} unoptimized /><p>{calibration.uncertainty}</p></div>
+      </section> : calibrationError ? <section className="calibration-unavailable"><strong>Experiment report unavailable</strong><span>The separate source histories remain available; no substitute validation result was inserted.</span></section> : null}
       <footer className="compare-notes"><p>{data.caveat}</p><p>Pipeline {data.pipelineVersion} · generated {data.generatedAtUtc.slice(0, 10)} · exact duplicate rows removed: {number.format(data.processing.exactDuplicateRowsRemoved)}</p><Link href="/method#sensor-differences">Read methods and limitations ↗</Link></footer>
     </main>
   );
