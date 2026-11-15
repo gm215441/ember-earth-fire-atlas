@@ -84,6 +84,7 @@ export function HeroExperience() {
             <Link href="/calendar">Calendar</Link>
             <Link href="/compare">Compare</Link>
             <Link href="/method">Methodology</Link>
+            <Link href="/tour">Science tour</Link>
           </nav>
         </header>
 

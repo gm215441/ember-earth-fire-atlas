@@ -604,3 +604,71 @@ Passport counts are satellite-detected thermal-anomaly pixels, not unique
 fires, burned area, observation coverage, cause, severity, or forecast skill.
 The percentile is conditioned on same-month positive-detection days. The
 rectangular extent is an analytical AOI, not an administrative boundary.
+
+## 2026-11-15 — Phase 10: two evidence-first extensions
+
+### Gate decision and scope
+
+- Reviewed the core acceptance gates and implementation log before beginning.
+  Required routes, science-contract tests, full browser coverage, and A4/Letter
+  printing were green; no critical failure displaced the optional phase.
+- Selected exactly two extensions: (1) real region-to-region seasonal analog
+  discovery and (2) a voice-independent, keyboard and screen-reader-friendly
+  science tour. No dependency, credential, chatbot, spread simulation, alert,
+  or decorative random layer was added.
+
+### Seasonal analog
+
+- Added `/analogs` and a pure `calculateSeasonalAnalog` module. It filters one
+  named SP stream, converts each region's 12 calendar-month median counts to a
+  within-region share vector, reports direct cosine shape similarity, then
+  evaluates all 12 circular calendar offsets. Raw regional totals and different
+  sensor families are never compared or combined.
+- MODIS Terra+Aqua SP uses 22 common profile years (2003-2024): direct shape
+  index 35.7/100, best offset -3 months, aligned index 81.6/100. VIIRS
+  Suomi-NPP SP uses 12 years (2013-2024): 26.0/100, -3 months, and 81.1/100.
+  Punjab's median-profile peak is November and California's is August. Target
+  year 2025 is excluded.
+- The interface names the formula, years, sensor, source snapshot, normalization
+  rule, two-AOI limitation, and non-claims. It explicitly says the index is not
+  probability, significance, shared cause, burned area, forecast, harmonization,
+  or climate attribution. Malformed/incomplete profiles show an error state.
+
+### Guided science tour
+
+- Added `/tour` with five evidence-linked steps: detection semantics, sensor
+  separation, prior-only day context, the failed calibration release gate, and
+  the printable Passport. The facts are read from the calendar and calibration
+  artifacts rather than duplicated as unsupported performance claims.
+- Added semantic step buttons, Previous/Next controls, left/right arrow support,
+  query-preserved active step, an atomic polite live region, a keyboard skip
+  link, and no voice, timing, hover, or drag requirement.
+- The first mobile visual run exposed a 648 px body width caused by the progress
+  rail's minimum grid width. The rail now scrolls internally within a 390 px
+  document; the fixed capture passed the explicit overflow assertion.
+
+### Verification and evidence
+
+- `npm run test`: PASS — 21/21. Two new real-artifact tests lock MODIS and VIIRS
+  year counts, peak months, offsets, and measured similarities.
+- `npm run typecheck`: PASS. `npm run lint`: PASS.
+- `npx playwright test e2e/stretch.spec.ts`: PASS — 3/3 after the mobile rail
+  fix. Tests cover real values, sensor switching and URL state, limitations,
+  keyboard tour progression, live factual checkpoints, Passport handoff, and
+  desktop/mobile overflow.
+- `npx playwright test`: PASS — 27/27 in 3.2 minutes across every existing and
+  new route and user story.
+- `npm run build`: PASS — Next.js 16.4.6 production Webpack build generated 11
+  app routes, including `/analogs` and `/tour` as partial prerendered output.
+- Inspected evidence: `phase10-analogs-1440x900.png`,
+  `phase10-analogs-390x844.png`, `phase10-tour-1440x900.png`, and
+  `phase10-tour-390x844.png`. The desktop analog clearly exposes the measured
+  indices and offset; the tour shows the progress model, selected step, computed
+  facts, and action without overlap or clipping.
+
+### Scientific status
+
+Analog similarity describes the phase and shape of normalized monthly median
+profiles within a named sensor stream. It is not evidence of common causes,
+equivalent fire regimes, prediction, or cross-sensor truth. Tour day percentiles
+remain conditioned on positive-detection days and are not risk or severity.

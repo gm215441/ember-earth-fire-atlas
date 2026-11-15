@@ -129,7 +129,7 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
   const years = Array.from({ length: data.period.endYear - data.period.startYear + 1 }, (_, index) => data.period.startYear + index);
   return (
     <main className="compare-shell">
-      <header className="compare-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Sensor diagnostics</small></span></Link><nav><Link href="/explore">Explore</Link><Link href={`/calendar?region=${region}&year=${endYear}&sensor=MODIS&date=${endYear}-04-29`}>Calendar</Link><Link href="/method">Method</Link></nav></header>
+      <header className="compare-header"><Link className="brand-lockup" href="/"><span className="brand-mark">E</span><span><strong>EMBER</strong><small>Sensor diagnostics</small></span></Link><nav><Link href="/explore">Explore</Link><Link href={`/calendar?region=${region}&year=${endYear}&sensor=MODIS&date=${endYear}-04-29`}>Calendar</Link><Link href="/analogs">Analogs</Link><Link href="/method">Method</Link></nav></header>
       <section className="compare-intro"><p className="eyebrow">Instrument record / {data.regions[region].label}</p><h1>Two histories.<br />No false equivalence.</h1><p>MODIS and VIIRS SNPP appear in separate panels with independent vertical scales. Raw counts measure detected pixels from different instruments—not one interchangeable fire record.</p></section>
       <section className="compare-controls" aria-label="Comparison controls">
         <label><span>Region</span><select value={region} onChange={(event) => setRegion(event.target.value as RegionId)}><option value="punjab">Punjab, Pakistan</option><option value="california">California, USA</option></select></label>
@@ -152,7 +152,7 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
       })}</div></section>
 
       <section className="independent-streams"><div><p className="eyebrow">Independent VIIRS streams</p><h2>Kept outside the reference line.</h2></div>{independent.map((row) => <article key={row.sensor}><span>{row.sensor}</span><strong>{number.format(row.count)}</strong><small>{row.first}—{row.last} · {[...row.quality].map((quality) => quality.toUpperCase()).join(" / ")}</small></article>)}</section>
-      {calibration ? <section className="calibration-section">
+      {calibration ? <section className="calibration-section" id="calibration">
         <div className="calibration-copy">
           <p className="eyebrow">Overlap experiment / {canPresentValidatedCalibration(calibration) ? "validated" : "not validated"}</p>
           <h2>{canPresentValidatedCalibration(calibration) ? "Held-out gates cleared." : "Better fit. Still not a unified truth."}</h2>
