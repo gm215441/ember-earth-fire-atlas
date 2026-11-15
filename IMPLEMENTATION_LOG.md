@@ -539,3 +539,68 @@ explicit.
 The numerical improvement demonstrates held-out alignment to MODIS in two AOIs,
 not fire truth, general regional validity, burned area, risk, forecast skill, or
 causal explanation. Sensor histories remain the only published comparison.
+
+## 2026-11-15 — Phase 09: Fire Season Passport
+
+### What changed
+
+- Added `/passport` as the printable endpoint of the Explore and Calendar
+  journey. Region, UTC year, named sensor stream, and selected UTC date survive
+  in a shareable query string; no credential or secret is placed in the URL.
+- Built an editorial evidence sheet rather than a generic report template. It
+  includes a computed lead finding, selected-day context, 12-month seasonal
+  signature, prior-season context, rectangular analysis extent, record window,
+  source badges, snapshot date, validation status, data cautions, and links to
+  NASA FIRMS, the Portolan catalog, and EMBER methods.
+- Added print-only layout rules and a desktop/mobile `Print / Save PDF` action.
+  Playwright now creates one-page A4 and US Letter artifacts in `output/pdf/`.
+  The first Letter inspection found the footer alone on page two; print-only
+  spacing and chart height were reduced, then both formats were regenerated.
+- Added `docs/PASSPORT.md` and browser coverage for state preservation,
+  computed facts, citations, mobile print interaction, overflow, screenshots,
+  and PDF creation. Calendar and Compare were also given the same explicit
+  blocking route mode already used by Explore, removing Next.js URL-data
+  navigation warnings without altering route state.
+
+### Computed example and provenance
+
+- Verified sheet: Punjab, MODIS Terra+Aqua SP, 2025, selected date 2025-04-29
+  UTC. November has the largest 2025 raw monthly total: 3,156 detected pixels
+  across 29 positive-detection UTC days.
+- The selected date contains 195 detected pixels and is at the empirical 98.4th
+  percentile among 629 April positive-detection days across 22 prior years.
+  The selected year and future years are excluded from this context.
+- October has the highest median positive-day count in the stable prior MODIS
+  record used by the sheet. Missing dates are not converted to zero.
+- Sources remain NASA LANCE FIRMS through the independently attributed Portolan
+  mirror. The sheet preserves the Phase 08 `unvalidated` calibration status and
+  keeps source histories separate.
+
+### Verification and evidence
+
+- `npm run test`: PASS — 19/19 unit tests.
+- `npm run typecheck`: PASS. `npm run lint`: PASS after removing a synchronous
+  effect-only share-path state update.
+- `npx playwright test e2e/passport.spec.ts`: PASS — 3/3.
+- `npx playwright test`: PASS — 24/24 in 3.0 minutes across all routes and all
+  earlier documentary, globe, explorer, calendar, comparison, and method
+  regressions.
+- `npx playwright test e2e/calendar.spec.ts e2e/compare-method.spec.ts`: PASS —
+  6/6 after the route-warning cleanup; no URL-data navigation warning remained.
+- `npm run build`: PASS — Next.js 16.4.6 production Webpack build generated all
+  nine application routes, including `/passport` as partial prerendered output.
+- `pdfinfo` reports one page at 595.92 x 842.88 points for A4 and one page at
+  612 x 792 points for Letter. Final PDF sizes are 180,896 and 180,823 bytes.
+  Both were rendered at 144 DPI and inspected for clipping, page breaks, glyph
+  corruption, hierarchy, citation readability, and footer placement.
+- Browser evidence: `phase09-passport-1440x900.png` and
+  `phase09-passport-390x844.png`. Deliverables:
+  `output/pdf/ember-punjab-passport-a4.pdf` and
+  `output/pdf/ember-punjab-passport-letter.pdf`.
+
+### Scientific status
+
+Passport counts are satellite-detected thermal-anomaly pixels, not unique
+fires, burned area, observation coverage, cause, severity, or forecast skill.
+The percentile is conditioned on same-month positive-detection days. The
+rectangular extent is an analytical AOI, not an administrative boundary.

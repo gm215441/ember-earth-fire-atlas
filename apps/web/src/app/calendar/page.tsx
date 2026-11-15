@@ -2,6 +2,8 @@ import { CalendarExperience } from "@/components/calendar-experience";
 import type { CalendarStream } from "@/lib/calendar-data";
 import type { RegionId } from "@/lib/regional-data";
 
+export const instant = false;
+
 export default async function CalendarPage({
   searchParams,
 }: {

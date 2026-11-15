@@ -138,6 +138,7 @@ export function CalendarExperience({ initialRegion, initialStream, initialYear, 
   const mapSensor = stream === "MODIS" ? "modis" : "viirs";
   const exploreHref = `/explore?region=${region}&start=${selectedDate}&end=${selectedDate}&sensor=${mapSensor}&quality=sp&platform=all&daynight=all`;
   const compareHref = `/compare?region=${region}&start=${year}&end=${year}&focus=${stream}`;
+  const passportHref = `/passport?region=${region}&year=${year}&sensor=${stream}&date=${selectedDate}`;
 
   if (failed) return <main className="calendar-state"><p className="eyebrow">Burning calendar / unavailable</p><h1>The verified daily series could not be loaded.</h1><p>No substitute dates or counts were inserted.</p><Link href="/">Return to globe</Link></main>;
   if (!data) return <main className="calendar-state" role="status"><p className="eyebrow">Burning calendar</p><h1>Loading daily sensor histories.</h1><span>UTC dates · SP quality · positive detections</span></main>;
@@ -176,7 +177,7 @@ export function CalendarExperience({ initialRegion, initialStream, initialYear, 
         <p className="eyebrow">Selected day / computed reading</p><h2>{selectedRow ? number.format(selectedRow.count) : "No reported row"}</h2><span>{selectedRow ? "satellite-detected thermal-anomaly pixels" : "Unavailable is not confirmed zero fire"}</span>
         {reference.status === "ready" ? <div className="reference-card"><strong>{decimal.format(reference.percentile)}th percentile</strong><span>{activityLanguage(reference.anomalyScore)}</span><dl><div><dt>Robust score</dt><dd>{decimal.format(reference.anomalyScore)} IQR</dd></div><div><dt>Prior sample</dt><dd>{reference.sampleCount} days / {reference.yearCount} years</dd></div><div><dt>Middle 50%</dt><dd>{decimal.format(reference.q25)}—{decimal.format(reference.q75)}</dd></div><div><dt>Median</dt><dd>{decimal.format(reference.median)}</dd></div></dl><p>Score = (selected count − prior median) ÷ prior IQR, using positive-detection days in the same calendar month from {reference.baselineStartYear}–{reference.baselineEndYear}. It is context, not a forecast or emergency rating.</p></div> : <div className="reference-card is-empty"><strong>{reference.status === "insufficient" ? "Not enough comparable history" : "Reference unavailable"}</strong><span>{reference.reason}</span>{reference.status === "insufficient" ? <p>{reference.sampleCount} prior positive days across {reference.yearCount} years; at least 20 days and 3 prior years are required.</p> : null}</div>}
         {peak ? <div className="calendar-fact"><span>Peak prior seasonal period</span><strong>{months[peak.month - 1]}</strong><p>{regionLabel}&apos;s highest median positive-day count in the prior stable {stream === "MODIS" ? "MODIS" : "VIIRS SNPP"} record. {peak.sampleCount} detected days across {peak.yearCount} years; missing days were not treated as zero.</p></div> : null}
-        <div className="calendar-actions"><Link href={exploreHref}>Open this date in Explore ↗</Link><Link href={compareHref}>Compare this year ↗</Link></div>
+        <div className="calendar-actions"><Link className="passport-action" href={passportHref}>Generate Passport ↗</Link><Link href={exploreHref}>Open this date in Explore ↗</Link><Link href={compareHref}>Compare this year ↗</Link></div>
       </aside>
     </section>
 

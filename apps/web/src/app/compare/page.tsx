@@ -2,6 +2,8 @@ import { SensorCompare } from "@/components/sensor-compare";
 import type { CalendarStream } from "@/lib/calendar-data";
 import type { RegionId } from "@/lib/regional-data";
 
+export const instant = false;
+
 export default async function ComparePage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const query = await searchParams;
   const one = (value: string | string[] | undefined) => Array.isArray(value) ? value[0] : value;

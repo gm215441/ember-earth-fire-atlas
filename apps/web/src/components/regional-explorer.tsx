@@ -148,6 +148,7 @@ export function RegionalExplorer({
           <fieldset><legend>Record quality</legend><div className="segmented">{[["all", "All"], ["sp", "SP"], ["nrt", "NRT"]].map(([value, label]) => <button key={value} type="button" aria-pressed={filters.quality === value} onClick={() => updateFilter("quality", value as ExplorerFilters["quality"])}>{label}</button>)}</div></fieldset>
           <fieldset><legend>Overpass light</legend><div className="segmented">{[["all", "All"], ["D", "Day"], ["N", "Night"]].map(([value, label]) => <button key={value} type="button" aria-pressed={filters.dayNight === value} onClick={() => updateFilter("dayNight", value as ExplorerFilters["dayNight"])}>{label}</button>)}</div></fieldset>
           <div className="filter-caveat"><strong>Positive detections only</strong><p>A gap is not confirmed no-fire or proof of observation coverage.</p></div>
+          <Link className="passport-journey" href={`/passport?region=${filters.region}&year=${filters.start.slice(0, 4)}&sensor=${filters.sensor === "viirs" ? "VIIRS_SNPP" : "MODIS"}&date=${filters.start}`}>Generate Fire Season Passport ↗</Link>
         </aside>
 
         <section className="map-column" aria-labelledby="map-title">
