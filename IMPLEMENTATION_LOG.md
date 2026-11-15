@@ -705,3 +705,38 @@ remain conditioned on positive-detection days and are not risk or severity.
   `home-seamless-scene-4-1280x720.png`. Each frame shows its complete heading,
   explanatory text, controls/link, graph, caption, and scene rail without
   overlap or clipping.
+
+## 2026-11-15 — Phase 11: adversarial visual and engineering audit
+
+### What changed
+
+- Audited `/`, `/explore`, `/calendar`, `/compare`, `/passport`, and `/method`
+  at 1440×900, 1280×720, 390×844, and 360×740 with completed-render readiness,
+  body-overflow assertions, console capture, local HTTP failure capture, and
+  screenshots.
+- Fixed severity-2 narrow-header collisions on Home and Compare. Fixed the
+  Explorer mobile hierarchy so the map appears before filters and the inspector.
+- Added explicit browser scenarios for WebGL absence, source 503, zero rows,
+  reduced motion, delayed data, keyboard-only use, and print reachability.
+- Added `docs/QA_REPORT.md` with the itemized severity list, two visual polish
+  passes, evidence paths, metrics, and outstanding severity-3 watch items.
+
+### Verification and evidence
+
+- `npm run lint`: PASS. `npm run typecheck`: PASS.
+- `npm run test`: PASS — 21/21.
+- `npm run build`: PASS — all 11 application routes generated.
+- `npx playwright test --project=edge`: PASS — 37/37 in 6.1 minutes.
+- Final performance sample: CLS 0, LCP 1,068 ms, DOM content loaded 1,026 ms,
+  load event 1,627 ms, 9 long tasks.
+- Evidence: 25 screenshots in `artifacts/screenshots/qa/`, covering the six core
+  routes at all four required sizes plus the WebGL fallback.
+
+### Limits and open items
+
+- Chrome DevTools performance MCP was unavailable; Playwright Test and browser
+  performance observers provided the documented fallback, so no Lighthouse
+  score is claimed.
+- WebGL initialization remains a severity-3 performance watch item. The Method
+  route's narrow section rail requires horizontal scrolling at 360 px but stays
+  contained, legible, and keyboard accessible.

@@ -1305,6 +1305,16 @@ nextjs-portal { display: none !important; }
   }
 }
 
+@media (max-width: 380px) {
+  .site-header nav {
+    gap: 12px;
+  }
+
+  .site-header nav a:nth-last-child(2) {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2223,18 +2233,18 @@ nextjs-portal { display: none !important; }
   .explorer-header { min-height: 62px; padding: 0 16px; grid-template-columns: 1fr auto; }
   .explorer-header > div { display: none; }
   .explorer-header nav { gap: 16px; }
-  .explorer-layout { display: block; }
+  .explorer-layout { display: flex; flex-direction: column; }
   .explorer-controls, .explorer-inspector { max-height: none; overflow: visible; border: 0; }
-  .explorer-controls { padding: 28px 20px 24px; }
+  .explorer-controls { order: 2; padding: 28px 20px 24px; }
   .control-heading strong, .control-heading h1, .control-heading h2 { max-width: none; font-size: 26px; }
-  .map-column { min-height: 610px; grid-template-rows: 1fr; }
+  .map-column { min-height: 610px; order: 1; grid-template-rows: 1fr; }
   .regional-map { inset: 0; }
   .map-summary { top: 12px; right: 12px; left: 12px; min-width: 0; }
   .map-summary > div { padding: 11px 12px; }
   .map-summary strong { font-size: 17px; }
   .map-mode { right: 10px; bottom: 37px; }
   .map-aoi { display: none; }
-  .explorer-inspector { display: block; padding: 30px 20px 44px; }
+  .explorer-inspector { display: block; order: 3; padding: 30px 20px 44px; }
   .provenance-drawer, .download-action { grid-column: auto; }
 }
 
@@ -2378,6 +2388,17 @@ nextjs-portal { display: none !important; }
   .calibration-section { padding: 55px 0; }
   .calibration-copy h2 { font-size: clamp(3rem, 14vw, 4.6rem); }
   .calibration-metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 380px) {
+  .compare-header nav {
+    gap: 12px;
+    font-size: 7px;
+  }
+
+  .compare-header nav a:last-child {
+    display: none;
+  }
 }
 
 /* Scientific method — editorial reference route. */

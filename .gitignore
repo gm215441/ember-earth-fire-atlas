@@ -10,6 +10,8 @@ playwright-report/
 test-results/
 blob-report/
 tmp/
+.codex-build/
+submission/EMBER-Space-Apps-Demo.pptx
 pipeline/cache/
 .env*
 !.env.example
