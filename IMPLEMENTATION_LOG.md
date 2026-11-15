@@ -672,3 +672,36 @@ Analog similarity describes the phase and shape of normalized monthly median
 profiles within a named sensor stream. It is not evidence of common causes,
 equivalent fire regimes, prediction, or cross-sensor truth. Tour day percentiles
 remain conditioned on positive-detection days and are not risk or severity.
+
+## 2026-11-15 — Homepage documentary seamless-transition correction
+
+### What changed
+
+- Replaced progress-only wheel behavior with deliberate one-gesture scene
+  stepping on enhanced desktop documentary views. One wheel gesture advances or
+  reverses exactly one scene; repeated events from the same gesture are absorbed
+  for 720 ms. Natural page scrolling remains available before scene one and
+  after scene four.
+- Removed the 760 px sticky minimum height and sized the documentary grid to the
+  actual viewport between its 76 px header and 74 px scene rail. Evidence plates
+  now use a viewport-responsive 420-550 px height.
+- Found and fixed the layout root cause: GSAP's transform animation had replaced
+  the panel's CSS transform-based centering, positioning copy from the viewport
+  midpoint downward. Active panels now occupy the documentary grid and center
+  their complete contents using flex layout, independently of animation.
+- Text and evidence plates retain the synchronized 620 ms incoming transition.
+  The final state requires both elements to be fully opaque together.
+
+### Verification and evidence
+
+- `npx playwright test e2e/home.spec.ts`: PASS — 11/11 in 2.2 minutes.
+- New tests prove one 140 px wheel gesture reaches only the next scene and that
+  every active panel has no internal overflow at 1280x720. Panel and plate bounds
+  must both stay between the documentary header and scene navigation rail.
+- `npm run lint`: PASS. `npm run typecheck`: PASS. `npm run test`: PASS — 21/21.
+- `npm run build`: PASS — Next.js 16.4.6 production Webpack build generated all
+  11 routes.
+- Inspected evidence: `home-seamless-scene-1-1280x720.png` through
+  `home-seamless-scene-4-1280x720.png`. Each frame shows its complete heading,
+  explanatory text, controls/link, graph, caption, and scene rail without
+  overlap or clipping.

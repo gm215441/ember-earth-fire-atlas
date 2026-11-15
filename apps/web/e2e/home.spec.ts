@@ -125,6 +125,52 @@ test("documentary scroll does not overwrite a manual month", async ({ page }) =>
   await expect(documentary).toHaveAttribute("data-period", "2020-01");
 });
 
+test("one wheel gesture advances exactly one synchronized documentary scene", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.reload();
+  const documentary = page.locator(".documentary");
+  await expect(documentary).toHaveAttribute("data-enhanced", "true");
+  await documentary.evaluate((element) => element.scrollIntoView({ block: "start" }));
+  await expect(documentary).toHaveAttribute("data-active-scene", "0");
+
+  await page.mouse.move(640, 360);
+  await page.mouse.wheel(0, 140);
+  await expect(documentary).toHaveAttribute("data-active-scene", "1", { timeout: 3_000 });
+  await page.waitForTimeout(850);
+  await expect(documentary).toHaveAttribute("data-active-scene", "1");
+  await expect(page.locator('[data-documentary-panel="1"]')).toHaveCSS("opacity", "1");
+  await expect(page.locator(".documentary-visual > .story-plate").nth(1)).toHaveCSS("opacity", "1");
+});
+
+test("every documentary scene keeps its complete copy and visual inside 1280x720", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.reload();
+  const documentary = page.locator(".documentary");
+  await expect(documentary).toHaveAttribute("data-enhanced", "true");
+  await documentary.evaluate((element) => element.scrollIntoView({ block: "start" }));
+
+  for (const scene of [0, 1, 2, 3]) {
+    await page.getByRole("button", { name: new RegExp(`Go to scene ${scene + 1}:`) }).click();
+    await expect(documentary).toHaveAttribute("data-active-scene", String(scene));
+    await page.waitForTimeout(700);
+    const panel = await page.locator(`[data-documentary-panel="${scene}"]`).boundingBox();
+    const panelFlow = await page.locator(`[data-documentary-panel="${scene}"]`).evaluate((element) => ({ clientHeight: element.clientHeight, scrollHeight: element.scrollHeight }));
+    const plate = await page.locator(".documentary-visual > .story-plate").nth(scene).boundingBox();
+    const header = await page.locator(".documentary-header").boundingBox();
+    const navigation = await page.locator(".documentary-navigation").boundingBox();
+    expect(panel).not.toBeNull();
+    expect(plate).not.toBeNull();
+    expect(header).not.toBeNull();
+    expect(navigation).not.toBeNull();
+    expect(panel!.y).toBeGreaterThanOrEqual(header!.y + header!.height - 1);
+    expect(panel!.y + panel!.height).toBeLessThanOrEqual(navigation!.y + 1);
+    expect(panelFlow.scrollHeight).toBeLessThanOrEqual(panelFlow.clientHeight + 1);
+    expect(plate!.y).toBeGreaterThanOrEqual(header!.y + header!.height - 1);
+    expect(plate!.y + plate!.height).toBeLessThanOrEqual(navigation!.y + 1);
+    await page.screenshot({ path: `../../artifacts/screenshots/home-seamless-scene-${scene + 1}-1280x720.png` });
+  }
+});
+
 test("documentary motion can be paused without scroll lock", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.reload();

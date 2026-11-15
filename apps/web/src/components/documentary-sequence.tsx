@@ -168,8 +168,33 @@ export function DocumentarySequence() {
           ease: "power2.inOut",
         },
       });
+      let wheelLocked = false;
+      let wheelUnlockTimer = 0;
+      const onWheel = (event: WheelEvent) => {
+        if (event.ctrlKey || Math.abs(event.deltaY) < 16) return;
+        const direction = event.deltaY > 0 ? 1 : -1;
+        const atBoundary = (visibleIndex === 0 && direction < 0) || (visibleIndex === scenes.length - 1 && direction > 0);
+        if (atBoundary) return;
+        event.preventDefault();
+        if (wheelLocked) return;
+        wheelLocked = true;
+        const targetIndex = Math.max(0, Math.min(scenes.length - 1, visibleIndex + direction));
+        const rootTop = root.getBoundingClientRect().top + window.scrollY;
+        const scrollRange = root.offsetHeight - window.innerHeight;
+        window.scrollTo({
+          top: rootTop + (scrollRange * targetIndex) / (scenes.length - 1),
+          behavior: "smooth",
+        });
+        wheelUnlockTimer = window.setTimeout(() => { wheelLocked = false; }, 720);
+      };
+      root.addEventListener("wheel", onWheel, { passive: false });
       ScrollTrigger.refresh();
-      return () => { storyTrigger.kill(); root.removeAttribute("data-enhanced"); };
+      return () => {
+        window.clearTimeout(wheelUnlockTimer);
+        root.removeEventListener("wheel", onWheel);
+        storyTrigger.kill();
+        root.removeAttribute("data-enhanced");
+      };
     });
     return () => media.revert();
   }, { scope: rootRef, dependencies: [motionPaused, periodLocked], revertOnUpdate: true });
