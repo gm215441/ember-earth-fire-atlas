@@ -2,7 +2,11 @@
 
 EMBER is a deployable historical burning-activity explorer built for the 2026 NASA Space Apps Challenge. It makes the NASA FIRMS MODIS and VIIRS active-fire record easier to explore while keeping the scientific limits visible.
 
-**[Open the live EMBER atlas](https://gm215441.github.io/ember-earth-fire-atlas/)**
+## Live submission
+
+**[Open EMBER — Earth Fire Atlas](https://ember-earth-fire-atlas.readyfloat4.chatgpt.site/)**
+
+This public one-click build includes the complete narrative homepage, explorer, calendar, comparison, passport, methodology, analogs, science tour, and checked-in data snapshot.
 
 [Open the seven-slide project demonstration](submission/EMBER-Space-Apps-Demo-v2.pptx)
 
