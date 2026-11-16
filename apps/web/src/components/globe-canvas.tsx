@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Globe, { type GlobeMethods } from "react-globe.gl";
+import { withBasePath } from "@/lib/base-path";
 
 export type GlobePoint = {
   id: number;
@@ -103,7 +104,7 @@ export default function GlobeCanvas({
         width={width}
         height={height}
         backgroundColor="rgba(0,0,0,0)"
-        globeImageUrl="/images/bluemarble-2048.png"
+        globeImageUrl={withBasePath("/images/bluemarble-2048.png")}
         showAtmosphere
         atmosphereColor="#6f9ca9"
         atmosphereAltitude={0.11}

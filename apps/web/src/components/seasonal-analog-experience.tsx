@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import { calculateSeasonalAnalog, type AnalogMonth, type AnalogStream } from "@/lib/science/seasonal-analog";
 import type { MonthlySeriesDataset } from "@/lib/series-data";
@@ -24,7 +25,7 @@ export function SeasonalAnalogExperience({ initialStream }: { initialStream: Ana
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/data/regional-monthly-series.json", { signal: controller.signal })
+    fetch(withBasePath("/data/regional-monthly-series.json"), { signal: controller.signal })
       .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<MonthlySeriesDataset>; })
       .then(setData)
       .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setFailed(true); });

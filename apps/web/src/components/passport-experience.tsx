@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import type { CalendarDataset, CalendarStream } from "@/lib/calendar-data";
 import type { CalibrationReport } from "@/lib/science/calibration-status";
@@ -20,8 +21,8 @@ export function PassportExperience({ initialRegion, initialStream, initialYear, 
   useEffect(() => {
     const controller = new AbortController();
     Promise.all([
-      fetch("/data/regional-calendar-series.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
-      fetch("/data/calibration-experiment.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; }),
+      fetch(withBasePath("/data/regional-calendar-series.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
+      fetch(withBasePath("/data/calibration-experiment.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; }),
     ]).then(([calendar, experiment]) => { setData(calendar); setCalibration(experiment); }).catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setFailed(true); });
     return () => controller.abort();
   }, [initialDate, initialRegion, initialStream, initialYear]);
@@ -65,7 +66,7 @@ export function PassportExperience({ initialRegion, initialStream, initialYear, 
 
       <section className="passport-provenance"><div><span>Source badges</span><p><b>NASA LANCE FIRMS</b><b>Portolan mirror</b><b>{initialStream} · SP</b><b>UTC</b></p></div><div><span>Validation status</span><p>{calibration.status === "unvalidated" ? "Cross-sensor experiment unvalidated; source histories remain separate." : "See method/version before interpreting a combined index."}</p></div><div><span>Data caution</span><p>A detection is not a unique fire. FRP is not burned area. Missing is not zero. No cause or emergency severity is inferred.</p></div></section>
 
-      <footer className="passport-footer"><div><strong>Continue the analysis</strong><span>{calendarHref}</span></div><div><a href="https://firms.modaps.eosdis.nasa.gov/download/">NASA FIRMS archive</a><a href="https://source.coop/portolan-mirrors/firms-catalog">Portolan catalog</a><a href="/method">Methods & limits</a></div><span>EMBER · evidence over equivalence</span></footer>
+      <footer className="passport-footer"><div><strong>Continue the analysis</strong><span>{calendarHref}</span></div><div><a href="https://firms.modaps.eosdis.nasa.gov/download/">NASA FIRMS archive</a><a href="https://source.coop/portolan-mirrors/firms-catalog">Portolan catalog</a><Link href="/method">Methods & limits</Link></div><span>EMBER · evidence over equivalence</span></footer>
     </article>
   </main>;
 }

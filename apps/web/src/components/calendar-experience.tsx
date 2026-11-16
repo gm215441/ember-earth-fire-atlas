@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import type { CalendarDailyRow, CalendarDataset, CalendarStream } from "@/lib/calendar-data";
 import type { RegionId, RegionalDataset, RegionalObservation } from "@/lib/regional-data";
@@ -101,8 +102,8 @@ export function CalendarExperience({ initialRegion, initialStream, initialYear, 
   useEffect(() => {
     const controller = new AbortController();
     Promise.all([
-      fetch("/data/regional-calendar-series.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
-      fetch("/data/regional-2025.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<RegionalDataset>; }),
+      fetch(withBasePath("/data/regional-calendar-series.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
+      fetch(withBasePath("/data/regional-2025.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<RegionalDataset>; }),
     ]).then(([calendar, map]) => { setData(calendar); setRegional(map); }).catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setFailed(true); });
     return () => controller.abort();
   }, []);

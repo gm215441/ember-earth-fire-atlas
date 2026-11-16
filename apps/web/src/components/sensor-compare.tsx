@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import type { CalendarStream } from "@/lib/calendar-data";
 import { canPresentValidatedCalibration, type CalibrationReport } from "@/lib/science/calibration-status";
@@ -83,7 +84,7 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/data/regional-monthly-series.json", { signal: controller.signal })
+    fetch(withBasePath("/data/regional-monthly-series.json"), { signal: controller.signal })
       .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<MonthlySeriesDataset>; })
       .then((dataset) => {
         setData(dataset);
@@ -96,7 +97,7 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/data/calibration-experiment.json", { signal: controller.signal })
+    fetch(withBasePath("/data/calibration-experiment.json"), { signal: controller.signal })
       .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; })
       .then(setCalibration)
       .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setCalibrationError(true); });
@@ -167,7 +168,7 @@ export function SensorCompare({ initialRegion, initialStartYear, initialEndYear,
           {!canPresentValidatedCalibration(calibration) ? <div className="calibration-decision"><strong>Release decision: keep the sensor series separate.</strong><span>No validated-index toggle is exposed. Geographic breadth failed, and 2020 was a held-out regression year.</span></div> : null}
           <Link href="/method#validation">Read the experimental method ↗</Link>
         </div>
-        <div className="calibration-plot"><Image src="/data/calibration-year-mae.svg" alt="Held-out MAE by year for the constant-ratio baseline and experimental regional seasonal fit" width={1280} height={620} unoptimized /><p>{calibration.uncertainty}</p></div>
+        <div className="calibration-plot"><Image src={withBasePath("/data/calibration-year-mae.svg")} alt="Held-out MAE by year for the constant-ratio baseline and experimental regional seasonal fit" width={1280} height={620} unoptimized /><p>{calibration.uncertainty}</p></div>
       </section> : calibrationError ? <section className="calibration-unavailable"><strong>Experiment report unavailable</strong><span>The separate source histories remain available; no substitute validation result was inserted.</span></section> : null}
       <footer className="compare-notes"><p>{data.caveat}</p><p>Pipeline {data.pipelineVersion} · generated {data.generatedAtUtc.slice(0, 10)} · exact duplicate rows removed: {number.format(data.processing.exactDuplicateRowsRemoved)}</p><Link href="/method#sensor-differences">Read methods and limitations ↗</Link></footer>
     </main>

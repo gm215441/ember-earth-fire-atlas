@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import {
   confidenceLabel,
@@ -53,7 +54,7 @@ export function RegionalExplorer({
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/data/regional-2025.json", { signal: controller.signal })
+    fetch(withBasePath("/data/regional-2025.json"), { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return response.json() as Promise<RegionalDataset>;

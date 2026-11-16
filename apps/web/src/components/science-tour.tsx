@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 import type { CalendarDataset } from "@/lib/calendar-data";
 import type { CalibrationReport } from "@/lib/science/calibration-status";
@@ -28,8 +29,8 @@ export function ScienceTour({ initialStep }: { initialStep: number }) {
   useEffect(() => {
     const controller = new AbortController();
     Promise.all([
-      fetch("/data/regional-calendar-series.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
-      fetch("/data/calibration-experiment.json", { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; }),
+      fetch(withBasePath("/data/regional-calendar-series.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalendarDataset>; }),
+      fetch(withBasePath("/data/calibration-experiment.json"), { signal: controller.signal }).then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<CalibrationReport>; }),
     ]).then(([calendarData, calibrationData]) => { setCalendar(calendarData); setCalibration(calibrationData); })
       .catch((reason: unknown) => { if ((reason as { name?: string }).name !== "AbortError") setFailed(true); });
     return () => controller.abort();

@@ -1,12 +1,8 @@
-import { SeasonalAnalogExperience } from "@/components/seasonal-analog-experience";
-import type { AnalogStream } from "@/lib/science/seasonal-analog";
+import { Suspense } from "react";
+import { AnalogsRouteEntry } from "@/components/route-entries";
 
-export const instant = false;
 export const metadata = { title: "EMBER - Seasonal Analogs" };
 
-export default async function AnalogsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const query = await searchParams;
-  const value = Array.isArray(query.stream) ? query.stream[0] : query.stream;
-  const stream: AnalogStream = value === "VIIRS_SNPP" ? "VIIRS_SNPP" : "MODIS";
-  return <SeasonalAnalogExperience initialStream={stream} />;
+export default function AnalogsPage() {
+  return <Suspense fallback={<main className="state-page" aria-busy="true"><p className="eyebrow">Loading analogs</p><h1>Preparing seasonal profiles.</h1></main>}><AnalogsRouteEntry /></Suspense>;
 }

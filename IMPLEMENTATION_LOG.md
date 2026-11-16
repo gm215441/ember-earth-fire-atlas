@@ -740,3 +740,50 @@ remain conditioned on positive-detection days and are not risk or severity.
 - WebGL initialization remains a severity-3 performance watch item. The Method
   route's narrow section rail requires horizontal scrolling at 360 px but stays
   contained, legible, and keyboard accessible.
+
+## 2026-11-16 — One-click GitHub Pages deployment
+
+### What changed
+
+- Added a GitHub Actions Pages workflow that installs the locked web
+  dependencies, creates a static Next.js export, uploads the exact `out/`
+  artifact, and deploys it to the `github-pages` environment on every push to
+  `main` or a manual workflow run.
+- Added subpath-aware public asset and dataset URLs for the project site at
+  `/ember-earth-fire-atlas/`; Next.js links continue to receive `basePath`
+  automatically.
+- Moved route query parsing for Explore, Calendar, Compare, Passport, Analogs,
+  and Tour into client-side route entries so direct query-string URLs retain
+  their requested region, sensor, date, range, view, and step on a static host.
+- Added `.nojekyll`, a dedicated `build:pages` command, and a post-export repair
+  for the open Next.js 16 Windows segment-cache path bug. Linux CI builds are
+  not affected, but local Windows exports now also avoid RSC prefetch 404s.
+- Added a deployment-specific Playwright suite that loads all eight public
+  experiences from the exported artifact, asserts successful HTTP responses,
+  no console errors, visible primary headings, and no horizontal overflow.
+- Added the one-click public URL to the repository README:
+  `https://gm215441.github.io/ember-earth-fire-atlas/`.
+
+### Verification and evidence
+
+- `npm run lint`: PASS.
+- `npm run typecheck`: PASS.
+- `npm run test`: PASS — 21/21.
+- `STATIC_EXPORT=true NEXT_PUBLIC_BASE_PATH=/ember-earth-fire-atlas npm run build:pages`:
+  PASS — nine application routes plus the not-found route exported as static
+  content with Next.js 16.4.6.
+- `STATIC_SITE_URL=http://127.0.0.1:4174/ember-earth-fire-atlas/ npx playwright test --config=playwright.export.config.ts`:
+  PASS — 1 deployment audit covering Home, Explore, Calendar, Compare,
+  Passport, Method, Analogs, and Tour.
+- Inspected evidence:
+  `artifacts/screenshots/github-pages-home-1440x900.png` and
+  `artifacts/screenshots/github-pages-explore-390x844.png`.
+
+### Data and limits
+
+- The deployment uses the same checked-in, dated scientific snapshots and
+  provenance already verified in earlier milestones. No source data, claims,
+  calibration status, or optional FIRMS credentials changed.
+- GitHub Pages must be enabled with GitHub Actions as its publishing source for
+  the repository. The deploy workflow reports the final public URL and is the
+  source of truth for deployment status.
